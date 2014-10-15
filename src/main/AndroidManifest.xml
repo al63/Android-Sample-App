@@ -4,17 +4,17 @@
           android:versionName="1.0.0-SNAPSHOT"
           package="com.sharethrough.sample">
 
-    <uses-sdk android:minSdkVersion="18"
-              android:targetSdkVersion="18"/>
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
 
     <application android:name="com.sharethrough.SampleApplication">
 
-        <activity android:name="com.sharethrough.sample.MyActivity" android:screenOrientation="portrait">
+        <activity android:name=".MyActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".BasicActivity" android:screenOrientation="portrait"/>
 
     </application>
 </manifest>

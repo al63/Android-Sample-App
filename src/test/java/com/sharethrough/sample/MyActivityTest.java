@@ -1,20 +1,42 @@
 package com.sharethrough.sample;
 
+import android.content.Intent;
+import android.widget.ListView;
+import android.widget.TextView;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.util.ActivityController;
 
-import static org.junit.Assert.assertTrue;
+import static org.fest.assertions.api.ANDROID.assertThat;
+import static org.robolectric.Robolectric.shadowOf;
+
 
 @Config(manifest = "./src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
 public class MyActivityTest {
 
+    private MyActivity subject;
+    private ActivityController<MyActivity> activityController;
+
+    @Before
+    public void setUp() throws Exception {
+        activityController = Robolectric.buildActivity(MyActivity.class).create().start().visible().resume();
+        subject = activityController.get();
+    }
+
     @Test
-    public void testSomething() throws Exception {
-        MyActivity activity = Robolectric.buildActivity(MyActivity.class).create().get();
-        assertTrue(activity != null);
+    public void showsItemForBasicView() throws Exception {
+        ListView menu = (ListView) subject.findViewById(R.id.menu);
+        shadowOf(menu).populateItems();
+//        TextView firstMenuItem = (TextView) menu.getChildAt(0);
+//        assertThat(firstMenuItem).hasText("Basic");
+        shadowOf(menu).clickFirstItemContainingText("Basic");
+        Intent nextStartedActivity = shadowOf(subject).getNextStartedActivity();
+
+        assertThat(nextStartedActivity).isEqualTo(new Intent(subject, BasicActivity.class));
     }
 }
