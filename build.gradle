@@ -63,7 +63,7 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+//    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     compile(name: 'sdk-0.1-SNAPSHOT', ext: 'aar')
     // Espresso
     androidTestCompile files('lib/espresso-1.1.jar')
