@@ -1,13 +1,15 @@
 package com.sharethrough.sample;
 
-import android.widget.TextView;
+import android.view.View;
+import android.view.ViewGroup;
+import com.sharethrough.sdk.BasicAdView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.util.ActivityController;
 
-import static org.fest.assertions.api.ANDROID.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 public class BasicActivityTest {
@@ -15,12 +17,20 @@ public class BasicActivityTest {
     private BasicActivity subject;
 
     @Test
-    public void showsAnAddFromSDK() throws Exception {
+    public void showsAnAdFromSDK() throws Exception {
         ActivityController<BasicActivity> activityController = Robolectric.buildActivity(BasicActivity.class).create().start().visible().resume();
         subject = activityController.get();
 
-        assertThat((TextView) subject.findViewById(R.id.title)).hasText("Title");
-        assertThat((TextView) subject.findViewById(R.id.description)).hasText("Description");
-        assertThat((TextView) subject.findViewById(R.id.advertiser)).hasText("Advertiser");
+        ViewGroup rootView = (ViewGroup) subject.getWindow().getDecorView().getRootView();
+        assertThat(hasBasicAdView(rootView)).isTrue();
+    }
+
+    boolean hasBasicAdView(ViewGroup viewGroup) {
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View child = viewGroup.getChildAt(i);
+            if (child instanceof BasicAdView) return true;
+            if (child instanceof ViewGroup && hasBasicAdView((ViewGroup) child)) return true;
+        }
+        return false;
     }
 }
