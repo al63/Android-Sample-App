@@ -4,6 +4,9 @@
           android:versionName="1.0.0-SNAPSHOT"
           package="com.sharethrough.sample">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
 
     <application android:name="com.sharethrough.SampleApplication">

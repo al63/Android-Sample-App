@@ -25,7 +25,6 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/ASL2.0'
-        exclude 'AndroidManifest.xml'
     }
     compileSdkVersion 19
     buildToolsVersion "19.1.0"
