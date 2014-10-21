@@ -19,5 +19,7 @@
         </activity>
         <activity android:name=".BasicActivity" android:screenOrientation="portrait"/>
 
+        <meta-data android:name="STR_ADSERVER_API" android:value="@string/ad_server"/>
+
     </application>
 </manifest>
