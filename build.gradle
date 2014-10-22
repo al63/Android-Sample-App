@@ -59,14 +59,17 @@ repositories {
         dirs 'lib'
     }
 }
-
 dependencies {
     repositories {
         mavenCentral()
     }
     compile 'org.codehaus.jackson:jackson-core-asl:1.1.0'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.0'
-    compile(name: 'sdk-0.1-SNAPSHOT', ext: 'aar')
+    if (new File('lib/sdk-0.1-SNAPSHOT.aar').isFile()) {
+        compile(name: 'sdk-0.1-SNAPSHOT', ext: 'aar')
+    } else {
+        compile project(':sdk')
+    }
     // Espresso
     androidTestCompile files('lib/espresso-1.1.jar')
     androidTestCompile files('lib/testrunner-1.1.jar')
