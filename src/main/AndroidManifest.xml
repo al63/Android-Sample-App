@@ -9,7 +9,7 @@
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
 
-    <application android:name="com.sharethrough.SampleApplication">
+    <application android:name="com.sharethrough.SampleApplication" android:hardwareAccelerated="true">
 
         <activity android:name=".MyActivity" android:screenOrientation="portrait">
             <intent-filter>
