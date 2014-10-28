@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".BasicActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
+        <activity android:name=".ListAdapterWithBasicViewActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
 
         <meta-data android:name="STR_ADSERVER_API" android:value="@string/ad_server"/>
 

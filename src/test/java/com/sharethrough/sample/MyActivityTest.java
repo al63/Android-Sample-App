@@ -32,11 +32,19 @@ public class MyActivityTest {
     public void showsItemForBasicView() throws Exception {
         ListView menu = (ListView) subject.findViewById(R.id.menu);
         shadowOf(menu).populateItems();
-//        TextView firstMenuItem = (TextView) menu.getChildAt(0);
-//        assertThat(firstMenuItem).hasText("Basic");
         shadowOf(menu).clickFirstItemContainingText("Basic");
         Intent nextStartedActivity = shadowOf(subject).getNextStartedActivity();
 
         assertThat(nextStartedActivity).isEqualTo(new Intent(subject, BasicActivity.class));
+    }
+
+    @Test
+    public void showsItemForListWithBasicView() throws Exception {
+        ListView menu = (ListView) subject.findViewById(R.id.menu);
+        shadowOf(menu).populateItems();
+        shadowOf(menu).clickFirstItemContainingText("ListAdapter with Basic View");
+        Intent nextStartedActivity = shadowOf(subject).getNextStartedActivity();
+
+        assertThat(nextStartedActivity).isEqualTo(new Intent(subject, ListAdapterWithBasicViewActivity.class));
     }
 }

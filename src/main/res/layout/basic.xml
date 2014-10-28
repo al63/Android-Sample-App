@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-    <TextView
-            android:id="@+id/title"
-            tools:text="Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:background="#DDD"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
     <FrameLayout
             android:id="@+id/thumbnail"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             />
-    <TextView
-            android:id="@+id/description"
-            tools:text="Description"
-            android:layout_below="@id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    <TextView
-            android:layout_toLeftOf="@+id/advertiser"
-            android:layout_alignBottom="@id/advertiser"
-            android:text="sponsored by "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/advertiser"
-            tools:text="Advertiser"
-            android:layout_alignBottom="@+id/thumbnail"
-            android:layout_alignRight="@id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-</RelativeLayout>
+
+    <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView
+                    android:layout_toLeftOf="@+id/advertiser"
+                    android:layout_alignBottom="@id/advertiser"
+                    android:text="Sponsored by "
+                    android:textColor="#808080"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/advertiser"
+                    tools:text="Advertiser"
+                    android:textColor="#808080"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+        </LinearLayout>
+        <TextView
+                android:id="@+id/title"
+                tools:text="Title"
+                android:textColor="#4A4A4A"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        <TextView
+                android:id="@+id/description"
+                tools:text="Description"
+                android:textColor="#898989"
+                android:fontFamily="sans-serif-light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+    </LinearLayout>
+
+</LinearLayout>
