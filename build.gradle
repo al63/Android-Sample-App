@@ -102,6 +102,12 @@ dependencies {
     androidTestCompile 'com.squareup:fest-android:1.0.+'
 }
 
+task copyTestAssets(type: Copy) {
+    from('src/test/assets/')
+    into 'build/test-classes/assets/'
+}
+test.dependsOn copyTestAssets
+
 apply plugin: 'idea'
 
 idea {
