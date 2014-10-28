@@ -78,7 +78,6 @@ public class ListAdapterWithBasicViewActivity extends Activity {
                 return result;
             }
         });
-
     }
 
     private static class FeedItem {
