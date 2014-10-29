@@ -63,8 +63,6 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'org.codehaus.jackson:jackson-core-asl:1.1.0'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.0'
     if (new File('lib/sdk-0.1-SNAPSHOT.aar').isFile()) {
         compile(name: 'sdk-0.1-SNAPSHOT', ext: 'aar')
     } else {
