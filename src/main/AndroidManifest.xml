@@ -9,9 +9,12 @@
 
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
 
-    <application android:name="com.sharethrough.SampleApplication" android:hardwareAccelerated="true">
+    <application android:name="com.sharethrough.SampleApplication"
+                 android:label="Sharethrough Sample App"
+                 android:hardwareAccelerated="true"
+                 android:icon="@drawable/str_icon">
 
-        <activity android:name=".MyActivity" android:screenOrientation="portrait">
+        <activity android:name=".MyActivity"  android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
