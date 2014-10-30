@@ -12,7 +12,7 @@
     <application android:name="com.sharethrough.SampleApplication"
                  android:label="Sharethrough Sample App"
                  android:hardwareAccelerated="true"
-                 android:icon="@drawable/str_icon">
+                 android:icon="@drawable/news_icon">
 
         <activity android:name=".MyActivity"  android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode">
             <intent-filter>
