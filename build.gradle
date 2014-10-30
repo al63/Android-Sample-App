@@ -66,6 +66,7 @@ dependencies {
     if (new File('lib/sdk-0.1-SNAPSHOT.aar').isFile()) {
         compile(name: 'sdk-0.1-SNAPSHOT', ext: 'aar')
     } else {
+        println('[[WARNING: Using Sharethrough SDK as a project dependency bc no SDK .aar file is available]]')
         compile project(':sdk')
     }
     // Espresso
