@@ -31,7 +31,7 @@ public class ListAdapterWithBasicViewActivityTest {
         }, new TestHttpResponse(200, Fixtures.getFile("assets/str_ad_youtube.json")));
         Robolectric.addHttpResponseRule("GET", "http://th.umb.na/il/URL", new TestHttpResponse());
 
-        subject = Robolectric.buildActivity(ListAdapterWithBasicViewActivity.class).create().start().visible().resume().get();
+        subject = Robolectric.buildActivity(ListAdapterWithBasicViewActivity.Card.class).create().start().visible().resume().get();
     }
 
     @Test

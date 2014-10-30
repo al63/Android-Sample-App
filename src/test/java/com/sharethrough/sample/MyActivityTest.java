@@ -41,9 +41,19 @@ public class MyActivityTest {
     public void showsItemForListWithBasicView() throws Exception {
         ListView menu = (ListView) subject.findViewById(R.id.menu);
         shadowOf(menu).populateItems();
-        shadowOf(menu).clickFirstItemContainingText("ListAdapter with Basic View");
+        shadowOf(menu).clickFirstItemContainingText("News Feed");
         Intent nextStartedActivity = shadowOf(subject).getNextStartedActivity();
 
-        assertThat(nextStartedActivity).isEqualTo(new Intent(subject, ListAdapterWithBasicViewActivity.class));
+        assertThat(nextStartedActivity).isEqualTo(new Intent(subject, ListAdapterWithBasicViewActivity.Feed.class));
+    }
+
+    @Test
+    public void showsItemForListWithCardView() throws Exception {
+        ListView menu = (ListView) subject.findViewById(R.id.menu);
+        shadowOf(menu).populateItems();
+        shadowOf(menu).clickFirstItemContainingText("Card");
+        Intent nextStartedActivity = shadowOf(subject).getNextStartedActivity();
+
+        assertThat(nextStartedActivity).isEqualTo(new Intent(subject, ListAdapterWithBasicViewActivity.Card.class));
     }
 }

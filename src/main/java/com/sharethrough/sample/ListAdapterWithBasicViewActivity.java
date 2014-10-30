@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sharethrough.sdk.BasicAdView;
 import com.sharethrough.sdk.Sharethrough;
 
-public class ListAdapterWithBasicViewActivity extends Activity {
+public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
     public static final String STR_KEY = "eeea9e65";
     private static final FeedItem[] FEED = {
@@ -26,6 +26,10 @@ public class ListAdapterWithBasicViewActivity extends Activity {
             new FeedItem(R.drawable.big_data, "Big Data: The New Frontier", "More and more companies are turning to big data"),
             new FeedItem(R.drawable.broncos_uniforms, "Buckin' Broncos", "Colorado rebrands after their embarassing Super Bowl failure")
     };
+
+    protected abstract int getItemLayoutResourceId();
+
+    protected abstract int getAdLayoutResourceId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +69,13 @@ public class ListAdapterWithBasicViewActivity extends Activity {
                     return getView((FeedItem) getItem(position), parent);
                 } else {
                     BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
-                    result.showAd(sharethrough, ListAdapterWithBasicViewActivity.this, R.layout.basic, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+                    result.showAd(sharethrough, ListAdapterWithBasicViewActivity.this, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
                     return result;
                 }
             }
 
             private View getView(FeedItem item, ViewGroup parent) {
-                View result = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(R.layout.feed_item, parent, false);
+                View result = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(getItemLayoutResourceId(), parent, false);
                 ((TextView)result.findViewById(R.id.title)).setText(item.title);
                 ((TextView)result.findViewById(R.id.description)).setText(item.description);
                 ((ImageView)result.findViewById(R.id.image)).setImageResource(item.imageResourceId);
@@ -89,6 +93,31 @@ public class ListAdapterWithBasicViewActivity extends Activity {
             this.title = title;
             this.description = description;
             this.imageResourceId = imageResourceId;
+        }
+    }
+
+    public static class Feed extends ListAdapterWithBasicViewActivity {
+        @Override
+        protected int getItemLayoutResourceId() {
+            return R.layout.feed_item;
+        }
+
+        @Override
+        protected int getAdLayoutResourceId() {
+            return R.layout.basic_ad;
+        }
+
+    }
+
+    public static class Card extends ListAdapterWithBasicViewActivity {
+        @Override
+        protected int getItemLayoutResourceId() {
+            return R.layout.card_item;
+        }
+
+        @Override
+        protected int getAdLayoutResourceId() {
+            return R.layout.card_ad;
         }
     }
 }
