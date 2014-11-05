@@ -14,7 +14,7 @@ import static org.fest.assertions.api.ANDROID.assertThat;
 import static org.robolectric.Robolectric.shadowOf;
 
 
-@Config(manifest = "./src/main/AndroidManifest.xml")
+@Config(manifest = "build/intermediates/manifests/debug/AndroidManifest.xml", resourceDir = "../../res/debug/")
 @RunWith(RobolectricTestRunner.class)
 public class MyActivityTest {
 

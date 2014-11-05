@@ -73,6 +73,9 @@ dependencies {
         println('[[WARNING: Using Sharethrough SDK as a project dependency bc no SDK .aar file is available]]')
         compile project(':sdk')
     }
+
+//    compile 'com.google.android.gms:play-services:4.0.+'
+
     // Espresso
     androidTestCompile files('lib/espresso-1.1.jar')
     androidTestCompile files('lib/testrunner-1.1.jar')
