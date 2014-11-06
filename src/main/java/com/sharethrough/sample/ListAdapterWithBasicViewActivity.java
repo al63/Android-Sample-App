@@ -36,7 +36,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_adapter_with_basic_view);
 
-        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY);
+        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000); // TODO
 
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(new BaseAdapter() {
@@ -66,15 +66,19 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (position != 3) {
-                    return getView((FeedItem) getItem(position), parent);
+                    return getListItemView((FeedItem) getItem(position), parent);
                 } else {
-                    BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
-                    result.showAd(sharethrough, ListAdapterWithBasicViewActivity.this, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
-                    return result;
+                    return getAdView();
                 }
             }
 
-            private View getView(FeedItem item, ViewGroup parent) {
+            private View getAdView() {
+                BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
+                result.showAd(sharethrough, ListAdapterWithBasicViewActivity.this, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+                return result;
+            }
+
+            private View getListItemView(FeedItem item, ViewGroup parent) {
                 View result = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(getItemLayoutResourceId(), parent, false);
                 ((TextView)result.findViewById(R.id.title)).setText(item.title);
                 ((TextView)result.findViewById(R.id.description)).setText(item.description);
