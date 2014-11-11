@@ -1,5 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ad_server">
-        <![CDATA[http://dumb-waiter.sharethrough.com/v3?creative_type=vine&placement_key=]]></string>
 </resources>
