@@ -62,9 +62,15 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             }
 
             @Override
+            public int getItemViewType(int i) {
+                if (i == 3) return IGNORE_ITEM_VIEW_TYPE;
+                return 0;
+            }
+
+            @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (position != 3) {
-                    return getListItemView((FeedItem) getItem(position), parent);
+                    return getListItemView(convertView, (FeedItem) getItem(position), parent);
                 } else {
                     return getAdView();
                 }
@@ -76,12 +82,14 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
                 return result;
             }
 
-            private View getListItemView(FeedItem item, ViewGroup parent) {
-                View result = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(getItemLayoutResourceId(), parent, false);
-                ((TextView) result.findViewById(R.id.title)).setText(item.title);
-                ((TextView) result.findViewById(R.id.description)).setText(item.description);
-                ((ImageView) result.findViewById(R.id.image)).setImageResource(item.imageResourceId);
-                return result;
+            private View getListItemView(View convertView, FeedItem item, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(getItemLayoutResourceId(), parent, false);
+                }
+                ((TextView) convertView.findViewById(R.id.title)).setText(item.title);
+                ((TextView) convertView.findViewById(R.id.description)).setText(item.description);
+                ((ImageView) convertView.findViewById(R.id.image)).setImageResource(item.imageResourceId);
+                return convertView;
             }
         });
     }
