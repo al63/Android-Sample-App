@@ -24,17 +24,17 @@ public class MyActivity extends Activity {
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-              switch (position) {
-                  case 0:
-                      startActivity(new Intent(MyActivity.this, BasicActivity.class));
-                      break;
-                  case 1:
-                      startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Feed.class));
-                      break;
-                  case 2:
-                      startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Card.class));
-                      break;
-              }
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MyActivity.this, BasicActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Feed.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Card.class));
+                        break;
+                }
             }
         });
     }

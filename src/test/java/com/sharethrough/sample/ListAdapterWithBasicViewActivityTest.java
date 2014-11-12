@@ -40,8 +40,8 @@ public class ListAdapterWithBasicViewActivityTest {
         shadowOf(listView).populateItems();
 
         ViewGroup adView = (ViewGroup) listView.getChildAt(3);
-        assertThat((TextView)adView.findViewById(R.id.title)).hasText("Title");
-        assertThat((TextView)adView.findViewById(R.id.description)).hasText("Description.");
-        assertThat((TextView)adView.findViewById(R.id.advertiser)).hasText("Advertiser");
+        assertThat((TextView) adView.findViewById(R.id.title)).hasText("Title");
+        assertThat((TextView) adView.findViewById(R.id.description)).hasText("Description.");
+        assertThat((TextView) adView.findViewById(R.id.advertiser)).hasText("Advertiser");
     }
 }

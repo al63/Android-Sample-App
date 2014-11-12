@@ -16,7 +16,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
     public static final String STR_KEY = "eeea9e65";
     private static final FeedItem[] FEED = {
             new FeedItem(R.drawable.olympics_flag, "Are you ready for the Olympics?", "Two of the most anticipated events for the upcoming games."),
-            new FeedItem(R.drawable.polar_bears, "The polar bear cubs are born!","The city zoo is proud to announce the birth of bebo and bobo.  Both cubs and momma bear are doing well."),
+            new FeedItem(R.drawable.polar_bears, "The polar bear cubs are born!", "The city zoo is proud to announce the birth of bebo and bobo.  Both cubs and momma bear are doing well."),
             new FeedItem(R.drawable.farming, "The Elders of Organic Farming", "For nearly a week, two dozen pioneers of sustainable agriculture from the United States and Canada shared decades’ worth of stories, secrets and anxieties…"),
             new FeedItem(R.drawable.lorem, "Curabitur pulvinar est arcu quis pretium lectus", "Aenean vel magna feugiat eros luctus convallis. Curabitur est est, convallis id leo eu, imperdiet pretium purus…"),
             new FeedItem(R.drawable.education, "Screen Time Study Finds Education Drop-Off", "According to a study, less than half the time that children age 2 to 10 spend watching or interacting with…"),
@@ -47,14 +47,12 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             @Override
             public Object getItem(int i) {
-                if ( i < 3) {
+                if (i < 3) {
                     return FEED[i];
-                }
-                else if ( i == 3) {
+                } else if (i == 3) {
                     return sharethrough;
-                }
-                else {
-                    return FEED[i-1];
+                } else {
+                    return FEED[i - 1];
                 }
             }
 
@@ -80,9 +78,9 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             private View getListItemView(FeedItem item, ViewGroup parent) {
                 View result = ListAdapterWithBasicViewActivity.this.getLayoutInflater().inflate(getItemLayoutResourceId(), parent, false);
-                ((TextView)result.findViewById(R.id.title)).setText(item.title);
-                ((TextView)result.findViewById(R.id.description)).setText(item.description);
-                ((ImageView)result.findViewById(R.id.image)).setImageResource(item.imageResourceId);
+                ((TextView) result.findViewById(R.id.title)).setText(item.title);
+                ((TextView) result.findViewById(R.id.description)).setText(item.description);
+                ((ImageView) result.findViewById(R.id.image)).setImageResource(item.imageResourceId);
                 return result;
             }
         });
