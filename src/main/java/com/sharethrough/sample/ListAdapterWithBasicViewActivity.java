@@ -78,7 +78,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             private View getAdView() {
                 BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
-                result.showAd(sharethrough, ListAdapterWithBasicViewActivity.this, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+                result.showAd(sharethrough, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
                 return result;
             }
 
