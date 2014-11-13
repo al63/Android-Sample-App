@@ -36,7 +36,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_adapter_with_basic_view);
 
-        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000); // TODO
+        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
 
         ListView list = (ListView) findViewById(R.id.list);
         list.setAdapter(new BaseAdapter() {
