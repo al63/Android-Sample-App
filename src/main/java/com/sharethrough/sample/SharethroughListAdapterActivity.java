@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.sharethrough.sdk.Sharethrough;
 import com.sharethrough.sdk.SharethroughListAdapter;
 
@@ -40,19 +37,42 @@ public class SharethroughListAdapterActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.list);
 
         final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
-        final MyAdapter myAdapter = new MyAdapter(getBaseContext(), Arrays.asList(FEED));
+        final ExampleAdapter myAdapter = new ExampleAdapter(getBaseContext(), Arrays.asList(FEED));
 
         SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad);
         listView.setAdapter(sharethroughAdapter);
+        listView.setOnItemClickListener(sharethroughAdapter.createOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(parent.getContext(), "Clicked: " + position, Toast.LENGTH_SHORT).show();
+            }
+        }));
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(parent.getContext(), "Long Clicked: " + position, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        listView.setOnItemSelectedListener(sharethroughAdapter.createOnItemSelectListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(view.getContext(), "Selected: " + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(parent.getContext(), "Nothing Selected", Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 
-    // TODO: rename to ExampleAdapter
-    public class MyAdapter extends BaseAdapter {
+    public class ExampleAdapter extends BaseAdapter {
 
         private final Context mContext;
         private List<FeedItem> mList;
 
-        public MyAdapter(final Context context, List<FeedItem> list) {
+        public ExampleAdapter(final Context context, List<FeedItem> list) {
             mList = list;
             mContext = context;
         }
