@@ -39,7 +39,7 @@ public class SharethroughListAdapterActivity extends Activity {
         final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
         final ExampleAdapter myAdapter = new ExampleAdapter(getBaseContext(), Arrays.asList(FEED));
 
-        SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad);
+        SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
         listView.setAdapter(sharethroughAdapter);
         listView.setOnItemClickListener(sharethroughAdapter.createOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class SharethroughListAdapterActivity extends Activity {
         listView.setOnItemSelectedListener(sharethroughAdapter.createOnItemSelectListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(view.getContext(), "Selected: " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(parent.getContext(), "Selected: " + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
