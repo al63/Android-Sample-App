@@ -47,13 +47,15 @@ public class SharethroughListAdapterActivity extends Activity {
                 Toast.makeText(parent.getContext(), "Clicked: " + position, Toast.LENGTH_SHORT).show();
             }
         }));
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+        listView.setOnItemLongClickListener(sharethroughAdapter.createOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(parent.getContext(), "Long Clicked: " + position, Toast.LENGTH_SHORT).show();
                 return false;
             }
-        });
+        }));
+
         listView.setOnItemSelectedListener(sharethroughAdapter.createOnItemSelectListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
