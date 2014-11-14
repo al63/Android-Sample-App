@@ -20,7 +20,7 @@ public class MyActivity extends Activity {
         ((TextView) findViewById(R.id.text)).setText(Test.MESSAGE);
 
         ListView menu = (ListView) findViewById(R.id.menu);
-        menu.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, R.id.text, new String[]{"Basic", "News Feed w/ Basic View", "Card Style w/ Basic View"}));
+        menu.setAdapter(new ArrayAdapter<String>(this, R.layout.menu_item, R.id.text, new String[]{"Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter"}));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -33,6 +33,9 @@ public class MyActivity extends Activity {
                         break;
                     case 2:
                         startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Card.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MyActivity.this, SharethroughListAdapterActivity.class));
                         break;
                 }
             }

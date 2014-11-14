@@ -17,10 +17,10 @@ public class BasicActivity extends Activity {
 
         Sharethrough sharethrough = new Sharethrough(this, PLACEMENT_KEY, 1000);
 
-        BasicAdView adViewWithDescription = (BasicAdView)findViewById(R.id.sharethrough_ad_with_description);
+        BasicAdView adViewWithDescription = (BasicAdView) findViewById(R.id.sharethrough_ad_with_description);
         adViewWithDescription.showAd(sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
 
-        BasicAdView adViewWithoutDescription = (BasicAdView)findViewById(R.id.sharethrough_ad_without_description);
+        BasicAdView adViewWithoutDescription = (BasicAdView) findViewById(R.id.sharethrough_ad_without_description);
         adViewWithoutDescription.showAd(sharethrough, R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail);
     }
 }

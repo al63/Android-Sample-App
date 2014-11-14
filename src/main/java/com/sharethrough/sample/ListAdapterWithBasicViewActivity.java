@@ -78,6 +78,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             private View getAdView() {
                 BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
+                //TODO: change r.id.title to something more unique like R.id.sharethrough_title
                 result.showAd(sharethrough, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
                 return result;
             }
@@ -92,18 +93,6 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
                 return convertView;
             }
         });
-    }
-
-    private static class FeedItem {
-        public final String title;
-        public final String description;
-        public final int imageResourceId;
-
-        private FeedItem(int imageResourceId, String title, String description) {
-            this.title = title;
-            this.description = description;
-            this.imageResourceId = imageResourceId;
-        }
     }
 
     public static class Feed extends ListAdapterWithBasicViewActivity {
