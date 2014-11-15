@@ -24,7 +24,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             new FeedItem(R.drawable.barber, "The 10 Best Barbers in San Francisco", "In need of a killer haircut?  We'll tell where to go and the barber to ask for."),
             new FeedItem(R.drawable.hamburger, "Hamburger Heaven", "How to guarantee your next cookout is the talk of the town. Let's cook some burgers!"),
             new FeedItem(R.drawable.big_data, "Big Data: The New Frontier", "More and more companies are turning to big data"),
-            new FeedItem(R.drawable.broncos_uniforms, "Buckin' Broncos", "Colorado rebrands after their embarassing Super Bowl failure")
+            new FeedItem(R.drawable.broncos_uniforms, "Buckin' Broncos", "Colorado rebrands after their embarrassing Super Bowl failure")
     };
 
     protected abstract int getItemLayoutResourceId();
