@@ -26,6 +26,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             new FeedItem(R.drawable.big_data, "Big Data: The New Frontier", "More and more companies are turning to big data"),
             new FeedItem(R.drawable.broncos_uniforms, "Buckin' Broncos", "Colorado rebrands after their embarrassing Super Bowl failure")
     };
+    private boolean adsToShow;
 
     protected abstract int getItemLayoutResourceId();
 
@@ -39,20 +40,29 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
         final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
 
         ListView list = (ListView) findViewById(R.id.list);
-        list.setAdapter(new BaseAdapter() {
+        final BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
-                return FEED.length + 1;
+                if (adsToShow) {
+                    return FEED.length + 1;
+                } else {
+                    return FEED.length;
+                }
+
             }
 
             @Override
             public Object getItem(int i) {
-                if (i < 3) {
-                    return FEED[i];
-                } else if (i == 3) {
-                    return sharethrough;
+                if (adsToShow) {
+                    if (i < 3) {
+                        return FEED[i];
+                    } else if (i == 3) {
+                        return sharethrough;
+                    } else {
+                        return FEED[i - 1];
+                    }
                 } else {
-                    return FEED[i - 1];
+                    return FEED[i];
                 }
             }
 
@@ -63,17 +73,27 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             @Override
             public int getItemViewType(int i) {
-                if (i == 3) return IGNORE_ITEM_VIEW_TYPE;
-                return 0;
+                if (adsToShow) {
+                    if (i == 3) return IGNORE_ITEM_VIEW_TYPE;
+                    return 0;
+                } else {
+                    return 0;
+                }
+
             }
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                if (position != 3) {
-                    return getListItemView(convertView, (FeedItem) getItem(position), parent);
+                if (adsToShow) {
+                    if (position != 3) {
+                        return getListItemView(convertView, (FeedItem) getItem(position), parent);
+                    } else {
+                        return getAdView();
+                    }
                 } else {
-                    return getAdView();
+                    return getListItemView(convertView, (FeedItem) getItem(position), parent);
                 }
+
             }
 
             private View getAdView() {
@@ -92,7 +112,23 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
                 ((ImageView) convertView.findViewById(R.id.image)).setImageResource(item.imageResourceId);
                 return convertView;
             }
+        };
+        list.setAdapter(adapter);
+
+        sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
+            @Override
+            public void newAdsToShow() {
+                adsToShow = true;
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void noAdsToShow() {
+                adsToShow = false;
+                adapter.notifyDataSetChanged();
+            }
         });
+
     }
 
     public static class Feed extends ListAdapterWithBasicViewActivity {
