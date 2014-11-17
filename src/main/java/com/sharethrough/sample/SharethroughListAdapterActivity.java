@@ -81,12 +81,12 @@ public class SharethroughListAdapterActivity extends Activity {
 
         @Override
         public int getCount() {
-            return mList.size();
+            return Integer.MAX_VALUE / 2;
         }
 
         @Override
         public Object getItem(int position) {
-            return mList.get(position);
+            return mList.get(position % mList.size());
         }
 
         @Override
@@ -114,7 +114,7 @@ public class SharethroughListAdapterActivity extends Activity {
 
             ViewHolder vh = (ViewHolder) convertView.getTag();
 
-            FeedItem item = mList.get(position);
+            FeedItem item = (FeedItem) getItem(position);
 
             vh.title.setText(item.title);
             vh.description.setText(item.description);

@@ -29,7 +29,7 @@ public class SharethroughListAdapterActivityTest {
             @Override
             public boolean matches(HttpRequest httpRequest) {
                 String uri = httpRequest.getRequestLine().getUri();
-                return uri.contains("dumb-waiter.sharethrough.com") && uri.contains(ListAdapterWithBasicViewActivity.STR_KEY);
+                return uri.contains("placement_key=" + ListAdapterWithBasicViewActivity.STR_KEY);
             }
         }, new TestHttpResponse(200, Fixtures.getFile("assets/str_ad_youtube.json")));
         Robolectric.addHttpResponseRule("GET", "http://th.umb.na/il/URL", new TestHttpResponse());
@@ -41,16 +41,32 @@ public class SharethroughListAdapterActivityTest {
                 return uri.contains("native.sharethrough.com") && uri.contains(ListAdapterWithBasicViewActivity.STR_KEY);
             }
         }, new TestHttpResponse(200, "{\"articlesBeforeFirstAd\": 3, \"articlesBetweenAds\": 2}"));
+        Robolectric.addHttpResponseRule(new RequestMatcher() {
+            @Override
+            public boolean matches(HttpRequest httpRequest) {
+                return httpRequest.getRequestLine().getUri().startsWith("http://b.sharethrough.com/butler");
+            }
+        }, new TestHttpResponse(200, ""));
 
         subject = Robolectric.buildActivity(SharethroughListAdapterActivity.class).create().start().visible().resume().get();
     }
 
     @Test
-    public void showsAdInTheMix() throws Exception {
+    public void showsAdsInTheMix() throws Exception {
         ListView listView = (ListView) subject.findViewById(R.id.list);
         shadowOf(listView).populateItems();
 
-        ViewGroup adView = (ViewGroup) listView.getChildAt(3); //AD_INDEX in ShareThroughListAdapter
+        verifyAdAtPosition(listView, 3);
+        verifyAdAtPosition(listView, 6);
+        verifyAdAtPosition(listView, 9);
+        verifyAdAtPosition(listView, 12);
+        verifyAdAtPosition(listView, 15);
+        verifyAdAtPosition(listView, 18);
+        verifyAdAtPosition(listView, 21);
+    }
+
+    private void verifyAdAtPosition(ListView listView, int position) {
+        ViewGroup adView = (ViewGroup) listView.getChildAt(position);
         ANDROID.assertThat((TextView) adView.findViewById(R.id.title)).hasText("Title");
         ANDROID.assertThat((TextView) adView.findViewById(R.id.description)).hasText("Description.");
         ANDROID.assertThat((TextView) adView.findViewById(R.id.advertiser)).hasText("Advertiser");
