@@ -118,7 +118,7 @@ public class SharethroughListAdapterActivity extends Activity {
 
             vh.title.setText(item.title);
             vh.description.setText(item.description);
-            vh.image.setImageResource(item.imageResourceId);
+            vh.image.setImageDrawable(getResources().getDrawable(item.imageResourceId));
 
             return convertView;
         }
