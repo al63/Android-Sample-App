@@ -88,7 +88,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
                     if (position != 3) {
                         return getListItemView(convertView, (FeedItem) getItem(position), parent);
                     } else {
-                        return getAdView();
+                        return getAdView(position);
                     }
                 } else {
                     return getListItemView(convertView, (FeedItem) getItem(position), parent);
@@ -96,10 +96,9 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             }
 
-            private View getAdView() {
-                BasicAdView result = new BasicAdView(ListAdapterWithBasicViewActivity.this);
+            private View getAdView(int position) {
                 //TODO: change r.id.title to something more unique like R.id.sharethrough_title
-                result.showAd(sharethrough, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+                BasicAdView result = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
                 return result;
             }
 
