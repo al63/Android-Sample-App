@@ -72,14 +72,18 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             }
 
             @Override
+            public int getViewTypeCount() {
+                return 2;
+            }
+
+            @Override
             public int getItemViewType(int i) {
                 if (adsToShow) {
-                    if (i == 3) return IGNORE_ITEM_VIEW_TYPE;
+                    if (i == 3) return 1;
                     return 0;
                 } else {
                     return 0;
                 }
-
             }
 
             @Override
@@ -88,7 +92,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
                     if (position != 3) {
                         return getListItemView(convertView, (FeedItem) getItem(position), parent);
                     } else {
-                        return getAdView(position);
+                        return getAdView(position, convertView);
                     }
                 } else {
                     return getListItemView(convertView, (FeedItem) getItem(position), parent);
@@ -96,9 +100,11 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             }
 
-            private View getAdView(int position) {
+            private View getAdView(int position, View convertView) {
                 //TODO: change r.id.title to something more unique like R.id.sharethrough_title
-                IAdView adView = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, null);
+                IAdView adView = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position,
+                        getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail,
+                        convertView instanceof IAdView ? (IAdView) convertView : null);
                 return adView.getAdView();
             }
 
