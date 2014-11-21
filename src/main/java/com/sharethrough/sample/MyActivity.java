@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import com.sharethrough.sdk.Test;
 
 public class MyActivity extends Activity {
 
@@ -25,8 +23,6 @@ public class MyActivity extends Activity {
         });
 
         setContentView(R.layout.activity_my);
-
-        ((TextView) findViewById(R.id.text)).setText(Test.MESSAGE);
 
         ListView menu = (ListView) findViewById(R.id.menu);
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
