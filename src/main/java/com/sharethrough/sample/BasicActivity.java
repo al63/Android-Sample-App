@@ -40,6 +40,9 @@ public class BasicActivity extends Activity {
 
         adViewWithDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
         adViewWithoutDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail);
+
+        sharethrough.putCreativeIntoAdView(adViewWithDescription, 0);
+        sharethrough.putCreativeIntoAdView(adViewWithoutDescription, 1);
     }
 
     // Only for testing
