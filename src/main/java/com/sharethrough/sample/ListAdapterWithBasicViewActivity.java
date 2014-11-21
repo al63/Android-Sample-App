@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.sharethrough.sdk.BasicAdView;
+import com.sharethrough.sdk.IAdView;
 import com.sharethrough.sdk.Sharethrough;
 
 public abstract class ListAdapterWithBasicViewActivity extends Activity {
@@ -98,8 +98,8 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
             private View getAdView(int position) {
                 //TODO: change r.id.title to something more unique like R.id.sharethrough_title
-                BasicAdView result = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
-                return result;
+                IAdView adView = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position, getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, null);
+                return adView.getAdView();
             }
 
             private View getListItemView(View convertView, FeedItem item, ViewGroup parent) {

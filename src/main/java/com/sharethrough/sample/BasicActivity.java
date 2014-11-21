@@ -38,8 +38,8 @@ public class BasicActivity extends Activity {
             }
         });
 
-        adViewWithDescription.showAd(sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
-        adViewWithoutDescription.showAd(sharethrough, R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail);
+        adViewWithDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+        adViewWithoutDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail);
     }
 
     // Only for testing
