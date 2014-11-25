@@ -33,7 +33,7 @@ public class DfpActivity extends Activity {
             }
         });
 
-        dfpAdView.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+        dfpAdView.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon);
         sharethrough.putCreativeIntoAdView(dfpAdView);
     }
 

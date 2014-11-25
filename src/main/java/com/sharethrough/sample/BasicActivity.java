@@ -38,10 +38,10 @@ public class BasicActivity extends Activity {
             }
         });
 
-        adViewWithDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+        adViewWithDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon);
         sharethrough.putCreativeIntoAdView(adViewWithDescription);
 
-        adViewWithoutDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail);
+        adViewWithoutDescription.prepareWithResourceIds(R.layout.basic_ad, R.id.title, R.id.advertiser, R.id.thumbnail, R.id.optout_icon);
         sharethrough.putCreativeIntoAdView(adViewWithoutDescription);
     }
 

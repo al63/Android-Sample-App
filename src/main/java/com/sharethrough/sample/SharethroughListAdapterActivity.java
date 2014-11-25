@@ -39,7 +39,7 @@ public class SharethroughListAdapterActivity extends Activity {
         final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
         final ExampleAdapter myAdapter = new ExampleAdapter(getBaseContext(), Arrays.asList(FEED));
 
-        SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+        SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon);
         listView.setAdapter(sharethroughAdapter);
         listView.setOnItemClickListener(sharethroughAdapter.createOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

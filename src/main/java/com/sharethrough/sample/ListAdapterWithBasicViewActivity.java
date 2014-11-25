@@ -103,7 +103,7 @@ public abstract class ListAdapterWithBasicViewActivity extends Activity {
             private View getAdView(int position, View convertView) {
                 //TODO: change r.id.title to something more unique like R.id.sharethrough_title
                 IAdView adView = sharethrough.getAdView(ListAdapterWithBasicViewActivity.this, position,
-                        getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail,
+                        getAdLayoutResourceId(), R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon,
                         convertView instanceof IAdView ? (IAdView) convertView : null);
                 return adView.getAdView();
             }
