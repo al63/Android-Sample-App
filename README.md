@@ -52,9 +52,11 @@ Add Google Play Services to your app via the instructions [here](https://develop
 First, create a layout (e.g., `ad.xml`) for showing ads with the following fields:
 
 1. `TextView` title
-2. `TextView` description
+2. `TextView` description (optional)
 3. `TextView` advertiser
 4. `FrameLayout` thumbnail
+5. `ImageView` optout_icon
+6. `ImageView` brand_logo
 
 for example:
 
@@ -76,6 +78,10 @@ for example:
 
         <FrameLayout android:id="@+id/thumbnail"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <ImageView android:id="@+id/optout_icon"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <ImageView android:id="@+id/brand_logo"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 </LinearLayout>
 ```
 
@@ -92,9 +98,9 @@ import com.sharethrough.sdk.BasicAdView;
 //...
 Sharethrough sharethrough = new Sharethrough(getContext(), YOUR_SHARETHROUGH_PLACEMENT_KEY);
 BasicAdView adView = (BasicAdView)findViewById(R.id.sharethrough_ad);
-adView.prepareWithResourceIds(R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+adView.prepareWithResourceIds(R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
 // or, if you don't want to show Description text
-adView.prepareWithResourceIds(R.layout.ad, R.id.title, R.id.advertiser, R.id.thumbnail);
+adView.prepareWithResourceIds(R.layout.ad, R.id.title, -1, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
 
 sharethrough.putCreativeIntoAdView(adView);
 ```
@@ -106,9 +112,9 @@ import com.sharethrough.sdk.SharethroughListAdapter;
 // create your own ListAdapter myListAdapter = ...
 // and your own ListView myListView = findViewById(R.id.my_list);
 Sharethrough sharethrough = new Sharethrough(getContext(), YOUR_SHARETHROUGH_PLACEMENT_KEY);
-SharethroughListAdapter sharethroughListAdapter = new SharethroughListAdapter(getContext(), myListAdapter, sharethough, R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail);
+SharethroughListAdapter sharethroughListAdapter = new SharethroughListAdapter(getContext(), myListAdapter, sharethough, R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
 // or, if you don't want to show Description text
-SharethroughListAdapter sharethroughListAdapter = new SharethroughListAdapter(getContext(), myListAdapter, R.layout.ad, R.id.title, R.id.advertiser, R.id.thumbnail);
+SharethroughListAdapter sharethroughListAdapter = new SharethroughListAdapter(getContext(), myListAdapter, R.layout.ad, R.id.title, -1, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
 
 
 myListView.setAdapter(sharethroughListAdapter);
