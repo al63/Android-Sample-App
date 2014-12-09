@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SharethroughListAdapterActivity extends Activity {
-    private static final String STR_KEY = "eeea9e65";
+    public static final String STR_KEY = "eeea9e65";
 
     private static final FeedItem[] FEED = {
             new FeedItem(R.drawable.olympics_flag, "Are you ready for the Olympics?", "Two of the most anticipated events for the upcoming games."),

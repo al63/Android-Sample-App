@@ -13,7 +13,7 @@ import com.sharethrough.sdk.Sharethrough;
 
 public abstract class ListAdapterWithBasicViewActivity extends Activity {
 
-    public static final String STR_KEY = "eeea9e65";
+    public static final String STR_KEY = "155c3656";
     private static final FeedItem[] FEED = {
             new FeedItem(R.drawable.olympics_flag, "Are you ready for the Olympics?", "Two of the most anticipated events for the upcoming games."),
             new FeedItem(R.drawable.polar_bears, "The polar bear cubs are born!", "The city zoo is proud to announce the birth of bebo and bobo.  Both cubs and momma bear are doing well."),

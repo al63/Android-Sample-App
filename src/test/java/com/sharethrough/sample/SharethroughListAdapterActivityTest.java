@@ -29,18 +29,11 @@ public class SharethroughListAdapterActivityTest {
             @Override
             public boolean matches(HttpRequest httpRequest) {
                 String uri = httpRequest.getRequestLine().getUri();
-                return uri.contains("placement_key=" + ListAdapterWithBasicViewActivity.STR_KEY);
+                return uri.contains("placement_key=" + SharethroughListAdapterActivity.STR_KEY);
             }
-        }, new TestHttpResponse(200, Fixtures.getFile("assets/str_ad_youtube.json")));
+        }, new TestHttpResponse(200, Fixtures.getFile("assets/str_ad_youtube_multiple.json")));
         Robolectric.addHttpResponseRule("GET", "http://th.umb.na/il/URL", new TestHttpResponse());
 
-        Robolectric.addHttpResponseRule(new RequestMatcher() {
-            @Override
-            public boolean matches(HttpRequest httpRequest) {
-                String uri = httpRequest.getRequestLine().getUri();
-                return uri.contains("native.sharethrough.com") && uri.contains(ListAdapterWithBasicViewActivity.STR_KEY);
-            }
-        }, new TestHttpResponse(200, "{\"articlesBeforeFirstAd\": 3, \"articlesBetweenAds\": 2}"));
         Robolectric.addHttpResponseRule(new RequestMatcher() {
             @Override
             public boolean matches(HttpRequest httpRequest) {

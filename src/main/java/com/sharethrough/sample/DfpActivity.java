@@ -7,7 +7,7 @@ import com.sharethrough.sdk.BasicAdView;
 import com.sharethrough.sdk.Sharethrough;
 
 public class DfpActivity extends Activity {
-    public static final String PLACEMENT_KEY = "eeea9e65";
+    public static final String PLACEMENT_KEY = "155c3656";
     private Sharethrough sharethrough;
 
     @Override
