@@ -98,9 +98,24 @@ import com.sharethrough.sdk.BasicAdView;
 //...
 Sharethrough sharethrough = new Sharethrough(getContext(), YOUR_SHARETHROUGH_PLACEMENT_KEY);
 BasicAdView adView = (BasicAdView)findViewById(R.id.sharethrough_ad);
+// make sure to set adView's visibility to GONE in case no ads are available
+adViewWithoutDescription.setVisibility(View.GONE);
 adView.prepareWithResourceIds(R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
 // or, if you don't want to show Description text
 adView.prepareWithResourceIds(R.layout.ad, R.id.title, -1, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
+
+// register callbacks to hide or show adView based on ads availability
+sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
+    @Override
+    public void newAdsToShow() {
+        adView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void noAdsToShow() {
+        adView.setVisibility(View.GONE);
+    }
+});
 
 sharethrough.putCreativeIntoAdView(adView);
 ```
