@@ -4,8 +4,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.11.+'
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'org.robolectric:robolectric-gradle-plugin:0.14.+'
     }
 }
 
@@ -52,8 +52,8 @@ android {
     }
     buildTypes {
         release {
-            runProguard true
-            proguardFile '/Users/engineer/workspace/Sharethrough-Android/app/proguard-android.txt'
+            minifyEnabled true
+            proguardFile '/Users/ryanloomba/workspace/Sharethrough-Android/app/proguard-android.txt'
         }
     }
     sourceSets {
@@ -96,7 +96,7 @@ dependencies {
     androidTestCompile('junit:junit:4.11') {
         exclude module: 'hamcrest-core'
     }
-    androidTestCompile('org.robolectric:robolectric:2.3') {
+    androidTestCompile('org.robolectric:robolectric:2.4') {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
         exclude module: 'httpclient'
