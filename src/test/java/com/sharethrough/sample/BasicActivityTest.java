@@ -13,7 +13,7 @@ import org.robolectric.util.ActivityController;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-@Config(manifest = "build/intermediates/manifests/debug/AndroidManifest.xml", resourceDir = "../../res/debug/")
+@Config(manifest = "build/intermediates/manifests/full/debug/AndroidManifest.xml", resourceDir = "../../../../../build/intermediates/res/debug", emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
 public class BasicActivityTest {
 
@@ -21,7 +21,7 @@ public class BasicActivityTest {
 
     @Test
     public void whenThereAreAdsAvailable_showsAnAdFromSDK() throws Exception {
-        ActivityController<BasicActivity> activityController = Robolectric.buildActivity(BasicActivity.class).create().start().visible().resume();
+        ActivityController<BasicActivity> activityController = Robolectric.buildActivity(BasicActivity.class).create().start().resume().visible();
         subject = activityController.get();
 
         subject.getSharethrough().getOnStatusChangeListener().newAdsToShow();
