@@ -97,7 +97,8 @@ and in your activity's Java code:
 import com.sharethrough.sdk.BasicAdView;
 //...
 Sharethrough sharethrough = new Sharethrough(getContext(), YOUR_SHARETHROUGH_PLACEMENT_KEY);
-BasicAdView adView = (BasicAdView)findViewById(R.id.sharethrough_ad);
+// You must provide a unique placementIndex for each adView. If you only have two adViews, this can just be 0 and 1. If you only have one adView, use 0.
+BasicAdView adView = (BasicAdView)findViewById(R.id.sharethrough_ad, PLACEMENT_INDEX);
 // make sure to set adView's visibility to GONE in case no ads are available
 adView.setVisibility(View.GONE);
 adView.prepareWithResourceIds(R.layout.ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
