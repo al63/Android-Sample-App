@@ -6,7 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.sharethrough.sdk.Sharethrough;
 import com.sharethrough.sdk.SharethroughListAdapter;
 
@@ -39,7 +45,19 @@ public class SharethroughListAdapterActivity extends Activity {
         final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
         final ExampleAdapter myAdapter = new ExampleAdapter(getBaseContext(), Arrays.asList(FEED));
 
-        SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
+
+        final SharethroughListAdapter sharethroughAdapter = new SharethroughListAdapter(this, myAdapter, sharethrough, R.layout.basic_ad, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
+        sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
+            @Override
+            public void newAdsToShow() {
+                sharethroughAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void noAdsToShow() {
+            }
+        });
+
         listView.setAdapter(sharethroughAdapter);
         listView.setOnItemClickListener(sharethroughAdapter.createOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
