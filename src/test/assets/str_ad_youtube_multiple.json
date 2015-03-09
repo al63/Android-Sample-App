@@ -3,7 +3,8 @@
     "template": "<div/>",
     "layout": "multiple",
     "articlesBeforeFirstAd": 3,
-    "articlesBetweenAds": 2
+    "articlesBetweenAds": 2,
+    "status": "live"
   },
   "creatives": [
     {
