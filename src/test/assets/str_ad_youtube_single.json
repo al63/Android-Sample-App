@@ -6,6 +6,8 @@
   "creatives": [
     {
       "price": 12567,
+      "adserverRequestId": "fake-request-id",
+      "auctionWinId": "fake-auction-win-id",
       "signature": "c19",
       "creative": {
         "creative_key": "ckey",
