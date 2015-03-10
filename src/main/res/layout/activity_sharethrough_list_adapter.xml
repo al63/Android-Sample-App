@@ -4,6 +4,8 @@
           android:background="@android:color/white"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:divider="@android:color/darker_gray"
+          android:dividerHeight="1dp"
           tools:context="com.sharethrough.sample.SharethroughListAdapterActivity">
 
 </ListView>
