@@ -26,7 +26,7 @@ public class MyActivity extends Activity {
 
         ListView menu = (ListView) findViewById(R.id.menu);
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
-                "Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter", "DFP"
+                "Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter", "DFP", "Recycler View"
         }));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,6 +46,9 @@ public class MyActivity extends Activity {
                         break;
                     case 4:
                         startActivity(new Intent(MyActivity.this, DfpActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(MyActivity.this, RecycleViewActivity.class));
                         break;
                 }
             }
