@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.sharethrough.sample"
-          android:versionCode="2"
-          android:versionName="1.0.0-SNAPSHOT">
+    package="com.sharethrough.sample"
+    android:versionCode="2"
+    android:versionName="1.0.0-SNAPSHOT" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE"/>
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
 
-    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="18"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="ANDROID.PERMISSION.WRITE_EXTERNAL_STORAGE" />
 
-    <application android:name="com.sharethrough.SampleApplication"
-                 android:hardwareAccelerated="true"
-                 android:icon="@drawable/news_icon"
-                 android:label="Sharethrough Sample App">
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
-        <activity android:name=".MyActivity"  android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode">
+    <application
+        android:name="com.sharethrough.SampleApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/news_icon"
+        android:label="Sharethrough Sample App" >
+        <activity
+            android:name=".MyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListAdapterWithBasicViewActivity$Feed" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
-        <activity android:name=".ListAdapterWithBasicViewActivity$Card" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
-        <activity android:name=".SharethroughListAdapterActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
-        <activity android:name=".BasicActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
-        <activity android:name=".DfpActivity" android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode"/>
+        <activity
+            android:name=".ListAdapterWithBasicViewActivity$Feed"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+        <activity
+            android:name=".ListAdapterWithBasicViewActivity$Card"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+        <activity
+            android:name=".SharethroughListAdapterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+        <activity
+            android:name=".BasicActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+        <activity
+            android:name=".DfpActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
 
-        <!--<meta-data android:name="STR_ADSERVER_API"-->
-                   <!--android:value="http://dumb-waiter.sharethrough.com/v3"/>-->
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <!-- <meta-data android:name="STR_ADSERVER_API" -->
+        <!-- android:value="http://dumb-waiter.sharethrough.com/v3"/> -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".RecycleViewActivity"
+            android:label="@string/title_activity_recycle_view" >
+        </activity>
     </application>
+
 </manifest>
