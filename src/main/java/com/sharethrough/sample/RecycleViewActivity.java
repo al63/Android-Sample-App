@@ -51,7 +51,7 @@ public class RecycleViewActivity extends Activity {
         /*initialize recycler view */
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 1000);
+        final Sharethrough sharethrough = new Sharethrough(this, STR_KEY, 5000);
         final MyRecyclerAdapter recycleAdapter = new MyRecyclerAdapter(feedItemList, sharethrough );
         mRecyclerView.setAdapter( recycleAdapter );
 
@@ -60,13 +60,11 @@ public class RecycleViewActivity extends Activity {
         sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
             @Override
             public void newAdsToShow() {
-                //adsToShow = true;
                 recycleAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void noAdsToShow() {
-                //adsToShow = false;
                 recycleAdapter.notifyDataSetChanged();
             }
         });

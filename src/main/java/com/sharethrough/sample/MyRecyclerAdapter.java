@@ -71,4 +71,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public int getItemCount() {
         return (null != feedItemList ? feedItemList.size() : 0);
     }
+
+    @Override
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+    }
 }
