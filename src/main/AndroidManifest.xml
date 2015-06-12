@@ -60,6 +60,14 @@
             android:name=".RecycleViewActivity"
             android:label="@string/title_activity_recycle_view" >
         </activity>
+
+
+        <activity
+                android:name="com.sharethrough.messytruth.MessyTruthListAdapterActivity"
+                />
+        <activity
+                android:name="com.sharethrough.messytruth.WebViewActivity" />
+
     </application>
 
 </manifest>

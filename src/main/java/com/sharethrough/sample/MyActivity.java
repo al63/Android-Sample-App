@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.sharethrough.messytruth.MessyTruthListAdapterActivity;
 
 public class MyActivity extends Activity {
 
@@ -26,7 +27,7 @@ public class MyActivity extends Activity {
 
         ListView menu = (ListView) findViewById(R.id.menu);
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
-                "Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter", "DFP", "Recycler View"
+                "Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter", "DFP", "Recycler View", "Messy Truth"
         }));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -49,6 +50,9 @@ public class MyActivity extends Activity {
                         break;
                     case 5:
                         startActivity(new Intent(MyActivity.this, RecycleViewActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(MyActivity.this, MessyTruthListAdapterActivity.class));
                         break;
                 }
             }
