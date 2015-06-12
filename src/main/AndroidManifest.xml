@@ -63,7 +63,7 @@
 
 
         <activity
-                android:name="com.sharethrough.messytruth.MessyTruthListAdapterActivity"
+                android:name="com.sharethrough.messytruth.PublisherListAdapterActivity"
                 />
         <activity
                 android:name="com.sharethrough.messytruth.WebViewActivity" />

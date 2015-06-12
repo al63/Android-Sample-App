@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.sharethrough.messytruth.MessyTruthListAdapterActivity;
+import com.sharethrough.messytruth.PublisherListAdapterActivity;
 
 public class MyActivity extends Activity {
 
@@ -52,7 +52,7 @@ public class MyActivity extends Activity {
                         startActivity(new Intent(MyActivity.this, RecycleViewActivity.class));
                         break;
                     case 6:
-                        startActivity(new Intent(MyActivity.this, MessyTruthListAdapterActivity.class));
+                        startActivity(new Intent(MyActivity.this, PublisherListAdapterActivity.class));
                         break;
                 }
             }

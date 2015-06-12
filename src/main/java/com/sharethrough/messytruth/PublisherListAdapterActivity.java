@@ -15,12 +15,12 @@ import com.sharethrough.sdk.Sharethrough;
 import java.util.ArrayList;
 
 
-public class MessyTruthListAdapterActivity extends Activity {
-    private static final String STR_KEY = "16592761";
-    private Sharethrough sharethrough;
+public class PublisherListAdapterActivity extends Activity {
+    private static final String PLACEMENT_KEY = "16592761";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
-    private MessyTruthListAdapter messyTruthListAdapter;
+    private PublisherListAdapter publisherListAdapter;
+    private SharethroughListAdapter sharethroughListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,35 +28,16 @@ public class MessyTruthListAdapterActivity extends Activity {
         setContentView(R.layout.mt_activity_sharethrough_list_adapter);
         setSwipeRefreshLayout();
 
-        setupSharethroughAds();
         setupListAdapter();
 
         retrievePublisherContentList();
     }
 
-    /**
-     * Set up sharethrough: (1) create sharethrough object, (2) set onstatuschangelistener
-     */
-    private void setupSharethroughAds() {
-        Logger.enabled = false;
-        sharethrough = new Sharethrough(context, STR_KEY, 1000);
-        sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
-            @Override
-            public void newAdsToShow() {
-                if (messyTruthListAdapter != null) {
-                    messyTruthListAdapter.notifyDataSetChanged();
-                }
-            }
-            @Override
-            public void noAdsToShow() {
-            }
-        });
-    }
-
     private void setupListAdapter() {
-        messyTruthListAdapter = new MessyTruthListAdapter(context, R.layout.mt_list_view, new ArrayList<ContentItem>());
-        messyTruthListAdapter.setSharethrough(sharethrough);
-        messyTruthListAdapter.setAdVariables(R.layout.mt_ad_view,
+        publisherListAdapter = new PublisherListAdapter(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>());
+
+        sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, PLACEMENT_KEY);
+        sharethroughListAdapter.setAdVariables(R.layout.mt_ad_view,
                 R.id.title,
                 R.id.description,
                 R.id.advertiser,
@@ -66,12 +47,12 @@ public class MessyTruthListAdapterActivity extends Activity {
 
         // create listview
         final ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(messyTruthListAdapter);
+        listView.setAdapter(sharethroughListAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("link", messyTruthListAdapter.getItem(messyTruthListAdapter.adjustPositionDueToAdInsertion(position)).getLink());
+                intent.putExtra("link", ((ContentItem)sharethroughListAdapter.getItem(position)).getLink());
                 startActivity(intent);
             }
         });
@@ -106,7 +87,7 @@ public class MessyTruthListAdapterActivity extends Activity {
     };
 
     /**
-     * Populates list messyTruthListAdapter with content items from response
+     * Populates list sharethroughListAdapter with content items from response
      */
     private final ContentRequest.OnCompleteListener requestContentListOnCompleteListener = new ContentRequest.OnCompleteListener() {
         @Override
@@ -117,13 +98,14 @@ public class MessyTruthListAdapterActivity extends Activity {
                 ArrayList<ContentItem> contentList = new ArrayList<ContentItem>();
                 contentList.addAll(contentItemParser.getContentItemList());
 
-                // creates list messyTruthListAdapter on initial app load, or refreshes content list in messyTruthListAdapter
+                // creates list sharethroughListAdapter on initial app load, or refreshes content list in sharethroughListAdapter
                 // when user drags to refresh
-                if (messyTruthListAdapter == null) {
+                if (publisherListAdapter == null) {
                     setupListAdapter();
                 } else {
-                    messyTruthListAdapter.setContentList(contentList);
-                    messyTruthListAdapter.notifyDataSetChanged();
+                    publisherListAdapter.setContentList(contentList);
+                    publisherListAdapter.notifyDataSetChanged();
+                    sharethroughListAdapter.notifyDataSetChanged();
                 }
 
             } catch (Exception e) {

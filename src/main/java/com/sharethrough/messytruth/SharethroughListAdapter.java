@@ -4,11 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import com.sharethrough.sample.R;
 import com.sharethrough.sdk.IAdView;
+import com.sharethrough.sdk.Logger;
 import com.sharethrough.sdk.Sharethrough;
 import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
@@ -16,11 +15,12 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
+public class SharethroughListAdapter extends BaseAdapter {
 
     private final Context context;
-    private List<ContentItem> contentList;
     private Sharethrough sharethrough;
+    private Adapter originalAdapter;
+    private String placementKey;
 
     //Ad variables
     private int adLayoutResourceId;
@@ -34,25 +34,48 @@ public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
     private int articlesBeforeFirstAd = 1;
     private int articlesBetweenAds = 3;
 
-    public MessyTruthListAdapter(Context context, int textViewResourceId, ArrayList<ContentItem> contentList) {
-        super(context, textViewResourceId, contentList);
+    public SharethroughListAdapter(Context context, Adapter originalAdapter, String placementKey) {
         this.context = context;
-        this.contentList = contentList;
+        this.originalAdapter = originalAdapter;
+        this.placementKey = placementKey;
+
+        Logger.enabled = true;
+        sharethrough = new Sharethrough(context, placementKey, 1000);
+        sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
+            @Override
+            public void newAdsToShow() {
+                handleNewAds();
+            }
+            @Override
+            public void noAdsToShow() {
+            }
+        });
     }
 
-    public void setSharethrough(Sharethrough sharethrough) {
-        this.sharethrough = sharethrough;
+    void handleNewAds() {
+        notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        int count = contentList.size();
-        return  sharethrough.getNumberOfPlacedAds() + count;
+        return  sharethrough.getNumberOfPlacedAds() + originalAdapter.getCount();
     }
 
     @Override
-    public ContentItem getItem(int position) {
-        return contentList.get(position);
+    public Object getItem(int position) {
+        if (isAd(position)) {
+            return null;
+        }
+        return originalAdapter.getItem(adjustPositionDueToAdInsertion(position));
+    }
+
+    @Override
+    public long getItemId(int position) {
+        if (isAd(position)) {
+            return 0;
+        }
+        return originalAdapter.getItemId(adjustPositionDueToAdInsertion(position));
+
     }
 
     @Override
@@ -65,17 +88,9 @@ public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
             return getAd(position, (IAdView) convertView);
         } else {
             sharethrough.fetchAdsIfReadyForMore();
-            View rowView = getPublisherContentItemView(adjustPositionDueToAdInsertion(position), parent);
-            return rowView;
-        }
-    }
+            return originalAdapter.getView(adjustPositionDueToAdInsertion(position), convertView, parent);
 
-    /**
-     * Sets content list for list adapter
-     * @param contentList
-     */
-    public void setContentList(ArrayList<ContentItem> contentList) {
-        this.contentList = contentList;
+        }
     }
 
     /**
@@ -84,11 +99,6 @@ public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
      * @return true if position should be an ad, false otherwise
      */
     private boolean isAd(int position) {
-        /*if (position == 5) {
-            return true;
-        }
-        return false;*/
-
         if (position < articlesBeforeFirstAd) {
             return false;
         }
@@ -104,33 +114,40 @@ public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
     }
 
     /**
-     * Gets the publisher content item for this feed position
-     * @param adjustedPosition index of list, already adjusted from sharethrough list adapter
-     * @param parent parent ViewGroup
-     * @return View of the content item article
+     * Get ad view from Sharethrough
+     * @param slotNumber position
+     * @param convertView convertView
+     * @return ad view
      */
-    private View getPublisherContentItemView(int adjustedPosition, ViewGroup parent) {
-        ContentItem contentItem = getItem(adjustedPosition);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.mt_list_view, parent, false);
-
-        TextView titleView = (TextView) rowView.findViewById(R.id.article_title);
-        titleView.setText(contentItem.getTitle());
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        Picasso.with(context).load(contentItem.getThumbnailUrl()).into(imageView);
-        TextView source = (TextView) rowView.findViewById(R.id.source);
-        source.setText(contentItem.getSource());
-        TextView publishedDate = (TextView) rowView.findViewById(R.id.published_date);
-        publishedDate.setText(contentItem.getPublishedDate() + adjustedPosition);
-
-        return rowView;
-    }
-
     private View getAd(int slotNumber, IAdView convertView) {
         return sharethrough.getAdView(context, slotNumber, adLayoutResourceId, titleViewId, descriptionViewId,
                 advertiserViewId, thumbnailViewId, optoutId, brandLogoId, convertView).getAdView();
     }
 
+    /**
+     * Converts Sharethrough adapter position TO publisher's adapter position
+     * @param position index
+     * @return adjusted position
+     */
+    public int adjustPositionDueToAdInsertion(int position) {
+        if (position <= articlesBeforeFirstAd) {
+            return position;
+        } else {
+            int numberOfAdsBeforePosition = sharethrough.getNumberOfAdsBeforePosition(position);
+            return position - numberOfAdsBeforePosition;
+        }
+    }
+
+    /**
+     * Set up Sharethrough view bindings
+     * @param adLayoutResourceId resourceId
+     * @param titleViewId titleId
+     * @param descriptionViewId descId
+     * @param advertiserViewId adViewId
+     * @param thumbnailViewId thumbId
+     * @param optoutId optoutId
+     * @param brandLogoId brandLogoId
+     */
     public void setAdVariables(int adLayoutResourceId,
                                int titleViewId,
                                int descriptionViewId,
@@ -145,25 +162,6 @@ public class MessyTruthListAdapter extends ArrayAdapter<ContentItem> {
         this.thumbnailViewId = thumbnailViewId;
         this.optoutId = optoutId;
         this.brandLogoId = brandLogoId;
-    }
-
-    //TODO figure out logic for this
-    public int adjustPositionDueToAdInsertion(int position) {
-        /*if( position >= 6 )
-        {
-            return position - 1;
-        }
-
-        return position;*/
-
-        if (position <= articlesBeforeFirstAd) {
-            return position;
-        } else {
-            int numberOfAdsBeforePosition = sharethrough.getNumberOfAdsBeforePosition(position);
-            int adjustedPosition = position - numberOfAdsBeforePosition;
-
-            return adjustedPosition;
-        }
     }
 
 }
