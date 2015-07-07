@@ -71,7 +71,7 @@ public class PublisherListAdapter extends ArrayAdapter<ContentItem> {
         TextView source = (TextView) rowView.findViewById(R.id.source);
         source.setText(contentItem.getSource());
         TextView publishedDate = (TextView) rowView.findViewById(R.id.published_date);
-        publishedDate.setText(contentItem.getPublishedDate() + position);
+        publishedDate.setText(contentItem.getPublishedDate() + "     " + position);
 
         return rowView;
     }

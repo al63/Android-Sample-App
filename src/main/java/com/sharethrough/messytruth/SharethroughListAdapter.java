@@ -80,7 +80,7 @@ public class SharethroughListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (isAd(position)) {
+        if (isAd(position) && sharethrough.getNumberOfAdsReadyToShow() != 0) {
             // we must check to make sure convertView is correct type, views may change type depending on ads availability
             if (convertView != null && !(convertView instanceof IAdView)) {
                 convertView = null;
