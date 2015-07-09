@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.sharethrough.sample.R;
 import com.sharethrough.sdk.Logger;
 import com.sharethrough.sdk.Sharethrough;
+import com.sharethrough.sdk.SharethroughListAdapter;
 
 import java.util.ArrayList;
 
@@ -36,14 +37,18 @@ public class PublisherListAdapterActivity extends Activity {
     private void setupListAdapter() {
         publisherListAdapter = new PublisherListAdapter(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>());
 
-        sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, PLACEMENT_KEY);
-        sharethroughListAdapter.setAdVariables(R.layout.mt_ad_view,
-                R.id.title,
-                R.id.description,
-                R.id.advertiser,
-                R.id.thumbnail,
-                R.id.optout_icon,
-                R.id.brand_logo);
+        final Sharethrough sharethrough = new Sharethrough(this, PLACEMENT_KEY, 1000);
+        sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, sharethrough, R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
+        sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
+            @Override
+            public void newAdsToShow() {
+                sharethroughListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void noAdsToShow() {
+            }
+        });
 
         // create listview
         final ListView listView = (ListView) findViewById(R.id.list);

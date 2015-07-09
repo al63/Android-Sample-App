@@ -67,7 +67,7 @@ public class PublisherListAdapter extends ArrayAdapter<ContentItem> {
         TextView titleView = (TextView) rowView.findViewById(R.id.article_title);
         titleView.setText(contentItem.getTitle());
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        Picasso.with(context).load(contentItem.getThumbnailUrl()).into(imageView);
+        Picasso.with(context).load(contentItem.getThumbnailUrl()).fit().centerCrop().into(imageView);
         TextView source = (TextView) rowView.findViewById(R.id.source);
         source.setText(contentItem.getSource());
         TextView publishedDate = (TextView) rowView.findViewById(R.id.published_date);
