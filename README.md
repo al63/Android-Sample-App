@@ -34,7 +34,7 @@ dependencies {
 Now follow the Common Instructions below to put Ads into your app
 
 #### Eclipse using the ADT Plugin
-1. Copy the zip file from [here](https://s3.amazonaws.com/str-android-sdk/sharethrough-android-sdk.zip) and unzip it to a new folder.
+1. Download the latest version of sharethrough-android-sdk.zip from [here](https://github.com/sharethrough/Android-SDK/releases) and unzip it to a new folder.
 2. From Eclipse, File -> Import and select Android. Choose Existing Android Code into Workspace.
 3. Browse to where you unzipped Sharethrough_Android_SDK and click Finish.
 4. Go to your application's Project -> Properties and press the Add... button to add the Sharethrough_Android_SDK as a library to your app project
