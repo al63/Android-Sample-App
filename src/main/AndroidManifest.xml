@@ -64,7 +64,6 @@
 
         <activity
                 android:name="com.sharethrough.messytruth.PublisherListAdapterActivity"
-                android:screenOrientation="portrait"
                 />
         <activity
                 android:name="com.sharethrough.messytruth.WebViewActivity"

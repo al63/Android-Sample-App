@@ -5,15 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.LruCache;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sharethrough.sample.R;
-import com.sharethrough.sdk.Logger;
-import com.sharethrough.sdk.Sharethrough;
-import com.sharethrough.sdk.SharethroughListAdapter;
+import com.sharethrough.sdk.*;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class PublisherListAdapterActivity extends Activity {
@@ -22,22 +25,25 @@ public class PublisherListAdapterActivity extends Activity {
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapter publisherListAdapter;
     private SharethroughListAdapter sharethroughListAdapter;
+    private Sharethrough sharethrough = null;
+    private String savedSharethrough = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mt_activity_sharethrough_list_adapter);
         setSwipeRefreshLayout();
-
-        setupListAdapter();
-
-        retrievePublisherContentList();
     }
 
-    private void setupListAdapter() {
+    private void setupListAdapter(String savedState) {
         publisherListAdapter = new PublisherListAdapter(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>());
 
-        final Sharethrough sharethrough = new Sharethrough(this, PLACEMENT_KEY, 1000);
+        if (savedState != null) {
+            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false, savedState);
+        } else{
+            sharethrough = new Sharethrough(this, PLACEMENT_KEY, 1500000, false);
+        }
+
         sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, sharethrough, R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
         sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
             @Override
@@ -106,7 +112,7 @@ public class PublisherListAdapterActivity extends Activity {
                 // creates list sharethroughListAdapter on initial app load, or refreshes content list in sharethroughListAdapter
                 // when user drags to refresh
                 if (publisherListAdapter == null) {
-                    setupListAdapter();
+                    setupListAdapter(savedSharethrough);
                 } else {
                     publisherListAdapter.setContentList(contentList);
                     publisherListAdapter.notifyDataSetChanged();
@@ -119,27 +125,29 @@ public class PublisherListAdapterActivity extends Activity {
         }
     };
 
+    @Override
+    protected void onResume() {
+        if (savedSharethrough == null) {
+            setupListAdapter(null);
+            retrievePublisherContentList();
+        } else {
+            setupListAdapter(savedSharethrough);
+            retrievePublisherContentList();
+        }
+        super.onResume();
+    }
+
+    protected void onRestoreInstanceState (Bundle savedInstanceState) {
+        savedSharethrough = (String) savedInstanceState.get("sharethrough");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("sharethrough", sharethrough.serialize());
+        super.onSaveInstanceState(outState);
+    }
 
 
-
-    // Life cycle methods
-//    @Override
-//    protected void onDestroy() {
-//        moPubAdAdapter.destroy();
-//        super.onDestroy();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        // Set up request parameters
-//        myRequestParameters = new RequestParameters.Builder()
-//                .keywords("my targeting keywords")
-//                .build();
-//
-//        // Request ads when the user returns to this activity
-//        moPubAdAdapter.loadAds(MOPUB_AD_UNIT_ID, myRequestParameters);
-//        super.onResume();
-//    }
 }
 
 
