@@ -35,13 +35,15 @@ public class PublisherListAdapterActivity extends Activity {
         setSwipeRefreshLayout();
     }
 
-    private void setupListAdapter(String savedState) {
+    private void setupListAdapter() {
         publisherListAdapter = new PublisherListAdapter(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>());
 
-        if (savedState != null) {
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false, savedState);
+        if (savedSharethrough != null) {
+            // Initialize Sharethrough with serializedSharethrough and reset serializedSharethrough
+            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false, savedSharethrough);
+            savedSharethrough = null;
         } else{
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY, 1500000, false);
+            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false);
         }
 
         sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, sharethrough, R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
@@ -112,7 +114,7 @@ public class PublisherListAdapterActivity extends Activity {
                 // creates list sharethroughListAdapter on initial app load, or refreshes content list in sharethroughListAdapter
                 // when user drags to refresh
                 if (publisherListAdapter == null) {
-                    setupListAdapter(savedSharethrough);
+                    setupListAdapter();
                 } else {
                     publisherListAdapter.setContentList(contentList);
                     publisherListAdapter.notifyDataSetChanged();
@@ -127,13 +129,8 @@ public class PublisherListAdapterActivity extends Activity {
 
     @Override
     protected void onResume() {
-        if (savedSharethrough == null) {
-            setupListAdapter(null);
-            retrievePublisherContentList();
-        } else {
-            setupListAdapter(savedSharethrough);
-            retrievePublisherContentList();
-        }
+        setupListAdapter();
+        retrievePublisherContentList();
         super.onResume();
     }
 
