@@ -5,18 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.LruCache;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.sharethrough.sample.R;
 import com.sharethrough.sdk.*;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class PublisherListAdapterActivity extends Activity {
