@@ -55,10 +55,10 @@
 
 
         <activity
-                android:name="com.sharethrough.messytruth.PublisherListAdapterActivity"
+                android:name="com.sharethrough.sample.PublisherListAdapterActivity"
                 />
         <activity
-                android:name="com.sharethrough.messytruth.WebViewActivity"
+                android:name="com.sharethrough.sample.WebViewActivity"
                 android:screenOrientation="portrait"/>
 
 

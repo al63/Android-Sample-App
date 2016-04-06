@@ -9,13 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.sharethrough.messytruth.ContentItem;
-import com.sharethrough.messytruth.ContentItemParser;
-import com.sharethrough.messytruth.PublisherListAdapter;
-import com.sharethrough.messytruth.WebViewActivity;
-import com.sharethrough.sdk.BasicAdView;
 import com.sharethrough.sdk.Sharethrough;
-import com.sharethrough.sdk.SharethroughListAdapter;
 
 import java.util.ArrayList;
 

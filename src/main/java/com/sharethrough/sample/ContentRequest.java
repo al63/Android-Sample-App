@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 import android.os.AsyncTask;
 import com.sharethrough.sdk.Logger;

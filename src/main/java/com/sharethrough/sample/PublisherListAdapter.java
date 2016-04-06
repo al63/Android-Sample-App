@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 import android.content.Context;
 import android.view.LayoutInflater;
