@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.sharethrough.messytruth.ContentItem;
-import com.sharethrough.messytruth.PublisherListAdapter;
 import com.sharethrough.sdk.BasicAdView;
 import com.sharethrough.sdk.IAdView;
 import com.sharethrough.sdk.Sharethrough;
@@ -28,6 +26,19 @@ public class PublisherListAdapterWithSharethroughAPI extends ArrayAdapter<Conten
         this.context = context;
         this.contentList = contentList;
         this.mSharethrough = mSharethrough;
+    }
+
+    @Override
+    public int getItemViewType(int position){
+        if (shouldReturnAd(position)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
     }
 
     @Override
