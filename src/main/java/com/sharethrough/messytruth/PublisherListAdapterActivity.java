@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class PublisherListAdapterActivity extends Activity {
-    private static final String PLACEMENT_KEY = "16592761";
+    private static final String PLACEMENT_KEY = "sGuw6TwbUfEeFCk9MZSeEm9y";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapter publisherListAdapter;
@@ -66,13 +67,29 @@ public class PublisherListAdapterActivity extends Activity {
         });
     }
 
+
     /**
-     * Makes request to retrieve Messy Truth Publisher content items
+     * Makes request to retrieve sample app content items
      */
     private void retrievePublisherContentList() {
-        ContentRequest contentRequest = new ContentRequest();
-        contentRequest.addOnCompleteListener(requestContentListOnCompleteListener);
-        contentRequest.doRequest();
+        try {
+            // parses sample app content items response
+            ContentItemParser contentItemParser = new ContentItemParser(ContentItemParser.feed);
+            ArrayList<ContentItem> contentList = new ArrayList<ContentItem>();
+            contentList.addAll(contentItemParser.getContentItemList());
+            // creates list sampleAppListAdapter on initial app load, or refreshes content list in sampleAppListAdapter
+            // when user drags to refresh
+            if (publisherListAdapter == null) {
+                setupListAdapter();
+            } else {
+                publisherListAdapter.setContentList(contentList);
+                publisherListAdapter.notifyDataSetChanged();
+                sharethroughListAdapter.notifyDataSetChanged();
+            }
+
+        } catch (Exception e) {
+            Log.w("Sample App", e.getMessage());
+        }
     }
 
     /**
@@ -94,34 +111,6 @@ public class PublisherListAdapterActivity extends Activity {
         }
     };
 
-    /**
-     * Populates list sharethroughListAdapter with content items from response
-     */
-    private final ContentRequest.OnCompleteListener requestContentListOnCompleteListener = new ContentRequest.OnCompleteListener() {
-        @Override
-        public void onComplete(String response) {
-            try {
-                // parses Messy Truth content items response
-                ContentItemParser contentItemParser = new ContentItemParser(response);
-                ArrayList<ContentItem> contentList = new ArrayList<ContentItem>();
-                contentList.addAll(contentItemParser.getContentItemList());
-
-                // creates list sharethroughListAdapter on initial app load, or refreshes content list in sharethroughListAdapter
-                // when user drags to refresh
-                if (publisherListAdapter == null) {
-                    setupListAdapter();
-                } else {
-                    publisherListAdapter.setContentList(contentList);
-                    publisherListAdapter.notifyDataSetChanged();
-                    sharethroughListAdapter.notifyDataSetChanged();
-                }
-
-            } catch (Exception e) {
-                Logger.w(e.getMessage());
-            }
-        }
-    };
-
     @Override
     protected void onResume() {
         setupListAdapter();
@@ -138,8 +127,6 @@ public class PublisherListAdapterActivity extends Activity {
         outState.putSerializable("sharethrough", sharethrough.serialize());
         super.onSaveInstanceState(outState);
     }
-
-
 }
 
 
