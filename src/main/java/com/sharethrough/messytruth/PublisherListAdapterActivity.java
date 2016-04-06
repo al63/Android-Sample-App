@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 
 public class PublisherListAdapterActivity extends Activity {
+    // prelive multiple dynamic placement
     private static final String PLACEMENT_KEY = "sGuw6TwbUfEeFCk9MZSeEm9y";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;

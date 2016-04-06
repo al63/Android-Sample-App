@@ -75,5 +75,4 @@ public class PublisherListAdapter extends ArrayAdapter<ContentItem> {
 
         return rowView;
     }
-
 }

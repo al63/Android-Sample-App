@@ -16,6 +16,7 @@ import com.sharethrough.sdk.SharethroughListAdapter;
 import java.util.ArrayList;
 
 public class DfpActivity extends Activity {
+    // prelive multiple dynamic placement
     public static final String PLACEMENT_KEY = "155c3656";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
