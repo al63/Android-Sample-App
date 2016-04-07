@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 /**
  * Represents one publisher feed content item with getters to content item variables

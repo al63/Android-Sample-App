@@ -34,15 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ListAdapterWithBasicViewActivity$Feed"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
-        <activity
-            android:name=".ListAdapterWithBasicViewActivity$Card"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
-        <activity
-            android:name=".SharethroughListAdapterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+
         <activity
             android:name=".BasicActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
@@ -63,10 +55,10 @@
 
 
         <activity
-                android:name="com.sharethrough.messytruth.PublisherListAdapterActivity"
+                android:name="com.sharethrough.sample.PublisherListAdapterActivity"
                 />
         <activity
-                android:name="com.sharethrough.messytruth.WebViewActivity"
+                android:name="com.sharethrough.sample.WebViewActivity"
                 android:screenOrientation="portrait"/>
 
 

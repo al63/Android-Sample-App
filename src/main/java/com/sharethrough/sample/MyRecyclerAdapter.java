@@ -12,7 +12,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private List<FeedItem> feedItemList;
     private Sharethrough sharethrough;
-    private enum  ViewType
+    private enum ViewType
     {
         FEED,
         BASIC_AD

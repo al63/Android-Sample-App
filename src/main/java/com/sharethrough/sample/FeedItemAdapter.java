@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 import org.json.JSONException;
 import org.json.JSONObject;

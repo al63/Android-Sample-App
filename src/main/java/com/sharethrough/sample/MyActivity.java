@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.sharethrough.messytruth.PublisherListAdapterActivity;
 
 public class MyActivity extends Activity {
 
@@ -26,9 +25,9 @@ public class MyActivity extends Activity {
         setContentView(R.layout.activity_my);
 
         ListView menu = (ListView) findViewById(R.id.menu);
+
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
-                "Basic", "News Feed w/ Basic View", "Card Style w/ Basic View", "News Feed w/ ListAdapter", "DFP", "Recycler View", "Messy Truth"
-        }));
+                "Basic API", "ListAdapter API", "DFP"}));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -37,22 +36,10 @@ public class MyActivity extends Activity {
                         startActivity(new Intent(MyActivity.this, BasicActivity.class));
                         break;
                     case 1:
-                        startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Feed.class));
+                        startActivity(new Intent(MyActivity.this, PublisherListAdapterActivity.class));
                         break;
                     case 2:
-                        startActivity(new Intent(MyActivity.this, ListAdapterWithBasicViewActivity.Card.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(MyActivity.this, SharethroughListAdapterActivity.class));
-                        break;
-                    case 4:
                         startActivity(new Intent(MyActivity.this, DfpActivity.class));
-                        break;
-                    case 5:
-                        startActivity(new Intent(MyActivity.this, RecycleViewActivity.class));
-                        break;
-                    case 6:
-                        startActivity(new Intent(MyActivity.this, PublisherListAdapterActivity.class));
                         break;
                 }
             }

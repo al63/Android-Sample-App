@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -75,5 +75,4 @@ public class PublisherListAdapter extends ArrayAdapter<ContentItem> {
 
         return rowView;
     }
-
 }

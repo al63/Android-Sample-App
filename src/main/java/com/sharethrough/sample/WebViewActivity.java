@@ -1,4 +1,4 @@
-package com.sharethrough.messytruth;
+package com.sharethrough.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
