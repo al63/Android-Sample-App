@@ -37,10 +37,12 @@ public class PublisherListAdapterActivity extends Activity {
 
         if (savedSharethrough != null) {
             // Initialize Sharethrough with serializedSharethrough and reset serializedSharethrough
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false, savedSharethrough);
+            STRSdkConfig config = new STRSdkConfig(this, PLACEMENT_KEY);
+            config.setSerializedSharethrough(savedSharethrough);
+            sharethrough = new Sharethrough(config);
             savedSharethrough = null;
         } else{
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false);
+            sharethrough = new Sharethrough(new STRSdkConfig(this, PLACEMENT_KEY));
         }
 
         sharethroughListAdapter = new SharethroughListAdapter(context, publisherListAdapter, sharethrough, R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);

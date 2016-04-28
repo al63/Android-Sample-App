@@ -9,13 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.sharethrough.sdk.STRSdkConfig;
 import com.sharethrough.sdk.Sharethrough;
 
 import java.util.ArrayList;
 
 public class BasicActivity extends Activity {
     // prelive multiple dynamic placement
-    public static final String PLACEMENT_KEY = "sGuw6TwbUfEeFCk9MZSeEm9y";
+    public static final String PLACEMENT_KEY = "c1a0a591";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapterWithSharethroughAPI publisherListAdapterWithSharethroughAPI;
@@ -32,10 +33,12 @@ public class BasicActivity extends Activity {
     private void setupListAdapter() {
         if (savedSharethrough != null) {
             // Initialize Sharethrough with serializedSharethrough and reset serializedSharethrough
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY, false, savedSharethrough);
+            STRSdkConfig config = new STRSdkConfig(this, PLACEMENT_KEY);
+            config.setSerializedSharethrough(savedSharethrough);
+            sharethrough = new Sharethrough(config);
             savedSharethrough = null;
         } else{
-            sharethrough = new Sharethrough(this, PLACEMENT_KEY);
+            sharethrough = new Sharethrough(new STRSdkConfig(this, PLACEMENT_KEY));
         }
 
         publisherListAdapterWithSharethroughAPI = new PublisherListAdapterWithSharethroughAPI(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>(), sharethrough);

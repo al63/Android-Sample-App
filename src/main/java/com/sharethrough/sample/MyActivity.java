@@ -38,9 +38,9 @@ public class MyActivity extends Activity {
                     case 1:
                         startActivity(new Intent(MyActivity.this, PublisherListAdapterActivity.class));
                         break;
-                    case 2:
-                        startActivity(new Intent(MyActivity.this, DfpActivity.class));
-                        break;
+//                    case 2:
+//                        startActivity(new Intent(MyActivity.this, DfpActivity.class));
+//                        break;
                 }
             }
         });
