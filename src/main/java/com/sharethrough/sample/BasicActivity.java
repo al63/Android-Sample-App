@@ -38,7 +38,7 @@ public class BasicActivity extends Activity {
             sharethrough = new Sharethrough(this, PLACEMENT_KEY);
         }
 
-        publisherListAdapterWithSharethroughAPI = new PublisherListAdapterWithSharethroughAPI(context.getApplicationContext(), R.layout.mt_list_view, new ArrayList<ContentItem>(), sharethrough);
+        publisherListAdapterWithSharethroughAPI = new PublisherListAdapterWithSharethroughAPI(context, R.layout.mt_list_view, new ArrayList<ContentItem>(), sharethrough);
 
         sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
             @Override
