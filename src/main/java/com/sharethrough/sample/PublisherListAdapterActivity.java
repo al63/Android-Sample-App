@@ -13,11 +13,13 @@ import com.sharethrough.sample.R;
 import com.sharethrough.sdk.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PublisherListAdapterActivity extends Activity {
     // prelive multiple dynamic placement
-    private static final String PLACEMENT_KEY = "sGuw6TwbUfEeFCk9MZSeEm9y";
+    private static final String PLACEMENT_KEY = "c1a0a591";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapter publisherListAdapter;
@@ -118,6 +120,12 @@ public class PublisherListAdapterActivity extends Activity {
     protected void onResume() {
         setupListAdapter();
         retrievePublisherContentList();
+
+        Map<String, String> customKeyValues = new HashMap<String, String>();
+        customKeyValues.put("key1", "val1");
+        customKeyValues.put("key2", "val2");
+        sharethrough.fetchAds(customKeyValues);
+
         super.onResume();
     }
 

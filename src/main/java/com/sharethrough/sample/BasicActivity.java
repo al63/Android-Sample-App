@@ -13,6 +13,8 @@ import com.sharethrough.sdk.STRSdkConfig;
 import com.sharethrough.sdk.Sharethrough;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BasicActivity extends Activity {
     // prelive multiple dynamic placement
@@ -113,6 +115,12 @@ public class BasicActivity extends Activity {
     protected void onResume() {
         setupListAdapter();
         retrievePublisherContentList();
+
+        Map<String, String> customKeyValues = new HashMap<String, String>();
+        customKeyValues.put("key1", "val1");
+        customKeyValues.put("key2", "val2");
+        sharethrough.fetchAds(customKeyValues);
+
         super.onResume();
     }
 
