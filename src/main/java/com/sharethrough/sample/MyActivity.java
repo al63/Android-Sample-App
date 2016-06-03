@@ -27,7 +27,7 @@ public class MyActivity extends Activity {
         ListView menu = (ListView) findViewById(R.id.menu);
 
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
-                "Basic API", "ListAdapter API", "DFP"}));
+                "Basic API", "ListAdapter API"}));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -37,9 +37,6 @@ public class MyActivity extends Activity {
                         break;
                     case 1:
                         startActivity(new Intent(MyActivity.this, PublisherListAdapterActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(MyActivity.this, DfpActivity.class));
                         break;
                 }
             }
