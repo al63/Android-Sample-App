@@ -38,28 +38,17 @@
         <activity
             android:name=".BasicActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
-        <activity
-            android:name=".DfpActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
 
-        <!-- <meta-data android:name="STR_ADSERVER_API" -->
-        <!-- android:value="http://dumb-waiter.sharethrough.com/v3"/> -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".RecycleViewActivity"
-            android:label="@string/title_activity_recycle_view" >
-        </activity>
+        <!--<activity-->
+            <!--android:name=".RecycleViewActivity"-->
+            <!--android:label="@string/title_activity_recycle_view" >-->
+        <!--</activity>-->
 
 
-        <activity
-                android:name="com.sharethrough.sample.PublisherListAdapterActivity"
-                />
-        <activity
-                android:name="com.sharethrough.sample.WebViewActivity"
-                android:screenOrientation="portrait"/>
 
 
     </application>
