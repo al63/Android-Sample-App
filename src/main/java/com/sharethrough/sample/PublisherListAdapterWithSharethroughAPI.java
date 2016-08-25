@@ -81,7 +81,7 @@ public class PublisherListAdapterWithSharethroughAPI extends ArrayAdapter<Conten
 
     public BasicAdView getBasicAdView() {
         BasicAdView adView = new BasicAdView(getContext());
-        adView.prepareWithResourceIds(R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo);
+        adView.prepareWithResourceIds(R.layout.mt_ad_view, R.id.title, R.id.description, R.id.advertiser, R.id.thumbnail, R.id.optout_icon, R.id.brand_logo, R.id.slug);
         return adView;
     }
 
