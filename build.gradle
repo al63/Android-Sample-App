@@ -87,6 +87,7 @@ repositories {
 dependencies {
     repositories {
         mavenCentral()
+        jcenter()
     }
     if (file('lib/sharethrough-android-sdk.aar').isFile()) {
         compile(name: 'sharethrough-android-sdk', ext: 'aar')
@@ -94,6 +95,8 @@ dependencies {
         println('[[WARNING: Using Sharethrough SDK as a project dependency bc no SDK .aar file is available]]')
         compile project(':sdk')
     }
+    compile(name: 'AudienceNetwork', ext: 'aar')
+    compile 'com.android.volley:volley:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services:6.+'
     compile 'com.android.support:multidex:1.0.0'
