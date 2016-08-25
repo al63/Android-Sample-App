@@ -22,7 +22,7 @@ public class MyActivity extends Activity {
             }
         });
 
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.main_activity);
 
         ListView menu = (ListView) findViewById(R.id.menu);
 
