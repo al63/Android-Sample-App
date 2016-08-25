@@ -27,7 +27,7 @@
         android:label="Sharethrough Sample App" >
         <activity
             android:name=".MyActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" >
+            android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,16 +37,15 @@
 
         <activity
             android:name=".BasicActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|layoutDirection|uiMode" />
+            android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!--<activity-->
-            <!--android:name=".RecycleViewActivity"-->
-            <!--android:label="@string/title_activity_recycle_view" >-->
-        <!--</activity>-->
+        <activity
+            android:name=".WebViewActivity">
+        </activity>
 
 
 
