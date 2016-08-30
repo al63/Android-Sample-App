@@ -7,4 +7,4 @@ An Android Sample App with Sharethrough SDK integration that displays in-feed na
 2. Get the latest Android SDK aar [here](https://github.com/sharethrough/Android-SDK/releases) and replace the current `sharethrough-android-sdk.aar` file in the `lib` folder. 
 3. The app can now be compiled and run
 
-Please see our [developer docs](https://www.developers.sharethrough.com/Android) for specific integration information
+Please see our [developer docs](http://developers.sharethrough.com/android) for specific integration information
