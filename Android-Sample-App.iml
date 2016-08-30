@@ -105,7 +105,6 @@
     <orderEntry type="library" exported="" scope="TEST" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="testrunner-runtime-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="fest-android-1.0.8" level="project" />
-    <orderEntry type="library" exported="" name="AudienceNetwork-" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="asm-util-5.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="testrunner-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="bcprov-jdk16-1.46" level="project" />
