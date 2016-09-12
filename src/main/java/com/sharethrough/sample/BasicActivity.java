@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BasicActivity extends Activity {
-    // prelive multiple dynamic placement
-    public static final String PLACEMENT_KEY = "c1a0a591";
+    // prelive monetize placement
+    public static final String PLACEMENT_KEY = "y3H5YCHzfPQPysjdNodLwJYC";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapterWithSharethroughAPI publisherListAdapterWithSharethroughAPI;
