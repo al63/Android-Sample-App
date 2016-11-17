@@ -2,13 +2,11 @@ package com.sharethrough.sample;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import com.sharethrough.sdk.STRSdkConfig;
 import com.sharethrough.sdk.Sharethrough;
 
@@ -16,19 +14,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BasicActivity extends Activity {
+public class RecyclerViewActivity extends Activity {
     // prelive monetize placement
     public static final String PLACEMENT_KEY = "y3H5YCHzfPQPysjdNodLwJYC";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
-    private PublisherListAdapterWithSharethroughAPI publisherListAdapterWithSharethroughAPI;
+    private PublisherRecyclerViewAdapterWithSharethroughAPI recyclerViewAdapter;
     private Sharethrough sharethrough = null;
     private String savedSharethrough = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mt_activity_sharethrough_list_adapter);
+        setContentView(R.layout.recylcer_view);
         setSwipeRefreshLayout();
     }
 
@@ -43,12 +41,11 @@ public class BasicActivity extends Activity {
             sharethrough = new Sharethrough(new STRSdkConfig(this, PLACEMENT_KEY));
         }
 
-        publisherListAdapterWithSharethroughAPI = new PublisherListAdapterWithSharethroughAPI(context, R.layout.mt_list_view, new ArrayList<ContentItem>(), sharethrough);
-
+        recyclerViewAdapter = new PublisherRecyclerViewAdapterWithSharethroughAPI(context, new ArrayList<ContentItem>(), sharethrough);
         sharethrough.setOnStatusChangeListener(new Sharethrough.OnStatusChangeListener() {
             @Override
             public void newAdsToShow() {
-                publisherListAdapterWithSharethroughAPI.notifyDataSetChanged();
+                recyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -56,17 +53,10 @@ public class BasicActivity extends Activity {
             }
         });
 
-        // create listview
-        final ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(publisherListAdapterWithSharethroughAPI);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("link", ((ContentItem)publisherListAdapterWithSharethroughAPI.getItem(position)).getLink());
-                startActivity(intent);
-            }
-        });
+        // create RecylcerView
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     /**
@@ -80,11 +70,11 @@ public class BasicActivity extends Activity {
             contentList.addAll(contentItemParser.getContentItemList());
             // creates list sampleAppListAdapter on initial app load, or refreshes content list in sampleAppListAdapter
             // when user drags to refresh
-            if (publisherListAdapterWithSharethroughAPI == null) {
+            if (recyclerViewAdapter == null) {
                 setupListAdapter();
             } else {
-                publisherListAdapterWithSharethroughAPI.setContentList(contentList);
-                publisherListAdapterWithSharethroughAPI.notifyDataSetChanged();
+                recyclerViewAdapter.setContentList(contentList);
+                recyclerViewAdapter.notifyDataSetChanged();
             }
 
         } catch (Exception e) {

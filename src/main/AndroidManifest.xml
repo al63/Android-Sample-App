@@ -36,8 +36,12 @@
         </activity>
 
         <activity
-            android:name=".BasicActivity"
+            android:name=".RecyclerViewActivity"
             android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" />
+
+        <activity
+                android:name=".ListViewActivity"
+                android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" />
 
         <meta-data
             android:name="com.google.android.gms.version"
