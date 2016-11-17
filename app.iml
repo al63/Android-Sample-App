@@ -97,6 +97,7 @@
     <orderEntry type="library" exported="" scope="TEST" name="ant-launcher-1.8.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-6.5.87" level="project" />
     <orderEntry type="library" exported="" name="support-v4-24.0.0" level="project" />
+    <orderEntry type="library" exported="" name="audience-network-sdk-4.17.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="guava-14.0.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="hamcrest-integration-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="asm-5.0.1" level="project" />
@@ -109,8 +110,10 @@
     <orderEntry type="library" exported="" scope="TEST" name="testrunner-1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="bcprov-jdk16-1.46" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-24.0.0" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-24.0.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="fest-util-1.2.5" level="project" />
+    <orderEntry type="library" exported="" name="exoplayer-r1.5.8" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="dagger-1.1.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="icu4j-53.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.5" level="project" />
@@ -130,5 +133,6 @@
     <orderEntry type="library" exported="" scope="TEST" name="fest-assert-core-2.0M10" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="robolectric-3.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="espresso-1.1" level="project" />
+    <orderEntry type="module" module-name="sdk" />
   </component>
 </module>
