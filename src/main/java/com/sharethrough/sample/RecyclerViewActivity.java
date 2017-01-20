@@ -26,7 +26,7 @@ public class RecyclerViewActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recylcer_view);
+        setContentView(R.layout.recycler_view);
         setSwipeRefreshLayout();
     }
 
