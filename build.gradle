@@ -1,11 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.14.+'
     }
 }
 
@@ -15,21 +15,20 @@ allprojects {
     }
 }
 
-apply plugin: 'android'
-apply plugin: 'robolectric'
+apply plugin: 'com.android.library'
 
 android {
-    tasks.whenTaskAdded { theTask ->
-        def taskName = theTask.name.toString()
-        if ("testDebug".toString().equals(taskName)) {
-            /**
-             * Listen for when robolectric adds the 'testDebug' task and when it does, add the -noverify
-             * option to that task's jvmArgs.  This allows us to turn off byte code verification when
-             * running our unit tests.
-             */
-            theTask.jvmArgs('-noverify')
-        }
-    }
+//    tasks.whenTaskAdded { theTask ->
+//        def taskName = theTask.name.toString()
+//        if ("testDebug".toString().equals(taskName)) {
+//            /**
+//             * Listen for when robolectric adds the 'testDebug' task and when it does, add the -noverify
+//             * option to that task's jvmArgs.  This allows us to turn off byte code verification when
+//             * running our unit tests.
+//             */
+//            theTask.jvmArgs('-noverify')
+//        }
+//    }
     packagingOptions {
         exclude 'LICENSE.txt'
         exclude 'META-INF/LICENSE'
@@ -42,7 +41,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     compileSdkVersion 24
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "24.0.2"
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 18
@@ -72,11 +71,6 @@ android {
             setRoot('src/test')
         }
     }
-}
-
-robolectric {
-    include '**/*Test.class'
-    exclude '**/espresso/**/*.class'
 }
 
 repositories {
@@ -131,19 +125,14 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    androidTestCompile 'com.squareup:fest-android:1.0.+'
+    androidTestCompile('com.squareup:fest-android:1.0.+') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
 }
 
 task copyTestAssets(type: Copy) {
     from('src/test/assets/')
     into 'build/test-classes/assets/'
 }
-test.dependsOn copyTestAssets
+//test.dependsOn copyTestAssets
 
-apply plugin: 'idea'
-
-idea {
-    module {
-        testOutputDir = file('build/test-classes/debug')
-    }
-}
