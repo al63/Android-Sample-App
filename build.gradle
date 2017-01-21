@@ -15,7 +15,7 @@ allprojects {
     }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: 'android'
 
 android {
 //    tasks.whenTaskAdded { theTask ->
