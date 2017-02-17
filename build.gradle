@@ -81,10 +81,15 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.+'
     compile 'com.google.code.gson:gson:2.5'
 }
+tasks.whenTaskAdded { theTask ->
+    def taskName = theTask.name.toString()
+    if (taskName == "test") {
+        theTask.dependsOn 'copyTestAssets'
+    }
+}
 
 task copyTestAssets(type: Copy) {
     from('src/test/assets/')
     into 'build/test-classes/assets/'
 }
-//test.dependsOn copyTestAssets
 
