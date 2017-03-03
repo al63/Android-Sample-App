@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class ListViewActivity extends Activity {
     // prelive monetize placement
-    public static final String PLACEMENT_KEY = "y3H5YCHzfPQPysjdNodLwJYC";
+    public static final String PLACEMENT_KEY = "RkRsCausCfXD9LdVJWntJekm";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherListAdapterWithSharethroughAPI publisherListAdapterWithSharethroughAPI;
