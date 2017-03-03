@@ -24,6 +24,7 @@
         android:name="com.sharethrough.SampleApplication"
         android:hardwareAccelerated="true"
         android:icon="@drawable/news_icon"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:label="Sharethrough Sample App" >
         <activity
             android:name=".MyActivity"
@@ -36,7 +37,11 @@
         </activity>
 
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".RecyclerViewActivityNativeAd"
+            android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" />
+
+        <activity
+            android:name=".RecyclerViewActivityVideoAd"
             android:configChanges="keyboardHidden|screenLayout|layoutDirection|uiMode" />
 
         <activity

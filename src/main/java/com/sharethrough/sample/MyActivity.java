@@ -27,16 +27,16 @@ public class MyActivity extends Activity {
         ListView menu = (ListView) findViewById(R.id.menu);
 
         menu.setAdapter(new ArrayAdapter<>(this, R.layout.menu_item, R.id.text, new String[]{
-                "Sample App with Recycler View", "Sample App with List View"}));
+                "CLICKOUT AD    (using Recycler View)", "VIDEO AD    (using Recycler View)"}));
         menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MyActivity.this, RecyclerViewActivity.class));
+                        startActivity(new Intent(MyActivity.this, RecyclerViewActivityNativeAd.class));
                         break;
                     case 1:
-                        startActivity(new Intent(MyActivity.this, ListViewActivity.class));
+                        startActivity(new Intent(MyActivity.this, RecyclerViewActivityVideoAd.class));
                         break;
                 }
             }

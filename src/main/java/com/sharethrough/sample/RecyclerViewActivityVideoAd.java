@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
 import com.sharethrough.sdk.STRSdkConfig;
 import com.sharethrough.sdk.Sharethrough;
 
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecyclerViewActivity extends Activity {
+public class RecyclerViewActivityVideoAd extends Activity {
     // prelive monetize placement
-    public static final String PLACEMENT_KEY = "y3H5YCHzfPQPysjdNodLwJYC";
+    public static final String PLACEMENT_KEY = "L84BwFGokXcqY3jgH8Aut89L";
     private Context context = this;
     private SwipeRefreshLayout swipeLayout;
     private PublisherRecyclerViewAdapterWithSharethroughAPI recyclerViewAdapter;
@@ -107,8 +108,7 @@ public class RecyclerViewActivity extends Activity {
         retrievePublisherContentList();
 
         Map<String, String> customKeyValues = new HashMap<String, String>();
-        customKeyValues.put("key1", "val1");
-        customKeyValues.put("key2", "val2");
+        customKeyValues.put("sharethrough_creative_key", "DS2UeCRQJekv1VDdWfz3CbDQWm");
         sharethrough.fetchAds(customKeyValues);
 
         super.onResume();
